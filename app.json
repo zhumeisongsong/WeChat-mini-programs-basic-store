@@ -1,29 +1,52 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/listNormal/listNormal",
+    "pages/listProduct/listProduct",
+    "pages/proxy/proxy",
+    "pages/profile/profile",
     "pages/logs/logs"
   ],
   "window": {
     "navigationBarBackgroundColor": "#333",
-    "navigationBarTitleText": "colorit",
+    "navigationBarTitleText": "闲嘴熊",
     "navigationBarTextStyle": "white",
     "backgroundTextStyle": "white",
     "enablePullDownRefresh": true
   },
   "tabBar": {
-    "selectedColor":"#f99",
+    "selectedColor": "#f99",
+    "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath":"images/icon-top.png",
-        "selectedIconPath":"images/icon-top-active.png"
+        "iconPath": "images/icon-top.png",
+        "selectedIconPath": "images/icon-top-active.png"
       },
       {
-        "pagePath":"pages/profile/profile",
-        "text":"我的",
-        "iconPath":"images/icon-profile.png",
-        "selectedIconPath":"images/icon-profile-active.png"
+        "pagePath": "pages/listNormal/listNormal",
+        "text": "文化",
+        "iconPath": "images/icon-culture.png",
+        "selectedIconPath": "images/icon-culture-active.png"
+      },
+      {
+        "pagePath": "pages/listProduct/listProduct",
+        "text": "产品",
+        "iconPath": "images/icon-shop.png",
+        "selectedIconPath": "images/icon-shop-active.png"
+      },
+      {
+        "pagePath": "pages/proxy/proxy",
+        "text": "代理",
+        "iconPath": "images/icon-proxy.png",
+        "selectedIconPath": "images/icon-proxy-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/icon-profile.png",
+        "selectedIconPath": "images/icon-profile-active.png"
       }
     ]
   },

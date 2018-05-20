@@ -10,11 +10,16 @@
 } 
 
 view{
-  box-sizing:border-box;
-  font-weight:100;
-  font-size:24rpx;
+  box-sizing: border-box;
+  font-weight: 100;
+  font-size: 24rpx;
 }
 
-image {
-  width: 100%;
+image{
+  display: block;
+}
+
+.h1{
+  font-size: 36rpx;
+  font-weight: bold;
 }

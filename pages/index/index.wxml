@@ -9,12 +9,11 @@
     </block>
   </swiper>
 
-
   <view class="icon-container">
-    <block wx:for="{{icons}}">
+    <view wx:for="{{icons}}" data-type="{{item.type}}" mode="widthFix" bindtap="onIconTap">
       <image src="{{item.src}}"/>
       <text>{{item.text}}</text>
-    </block>
+    </view>
   </view>
 
 </view>

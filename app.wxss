@@ -7,12 +7,14 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+
+view, image, text{
+  box-sizing: border-box;
+}
 
 view{
-  box-sizing: border-box;
-  font-weight: 100;
-  font-size: 24rpx;
+  font-size: 12px;
 }
 
 image{
@@ -22,4 +24,23 @@ image{
 .h1{
   font-size: 36rpx;
   font-weight: bold;
+}
+
+.icon-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding:0 12px;
+  text-align: center;
+}
+
+.icon-container image{
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+}
+
+.icon-container text{
+  display: block;
+  padding-top: 6px;
 }

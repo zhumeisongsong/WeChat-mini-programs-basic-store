@@ -13,32 +13,48 @@ Page({
     duration: 1000,
     icons: [
       {
+        type: 'shop',
         src: '/images/icon-product.png',
         text: '熊熊产品'
       },
       {
+        type: 'food',
         src: '/images/icon-food.png',
         text: '美食详情'
       },
       {
+        type: 'story',
         src: '/images/icon-cartoon.png',
         text: '漫画故事'
       },
       {
+        type: 'video',
         src: '/images/icon-video.png',
         text: '试吃视频'
       }
     ],
-    iconNotice:'/images/icon-notice.png',
+    iconNotice: '/images/icon-notice.png',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  onIconTap: function (event) {
+    let type = event.currentTarget.dataset.type
+    if (type === 'video') {
+      console.log(type)
+      wx.navigateTo({
+        url: `../${type}/${type}`
+      })
+    } else if (type === 'shop') {
+      console.log(type)
+      wx.switchTab({
+        url: '../shop/shop'
+      })
+    } else {
+      wx.navigateTo({
+        url: `../list/list?type=${type}`
+      })
+    }
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

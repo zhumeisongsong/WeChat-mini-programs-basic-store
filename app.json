@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/culture/culture",
     "pages/list/list",
-    "pages/listProduct/listProduct",
+    "pages/video/video",
+    "pages/shop/shop",
     "pages/proxy/proxy",
     "pages/profile/profile",
     "pages/logs/logs"
@@ -25,13 +27,13 @@
         "selectedIconPath": "images/icon-top-active.png"
       },
       {
-        "pagePath": "pages/list/list",
+        "pagePath": "pages/culture/culture",
         "text": "文化",
         "iconPath": "images/icon-culture.png",
         "selectedIconPath": "images/icon-culture-active.png"
       },
       {
-        "pagePath": "pages/listProduct/listProduct",
+        "pagePath": "pages/shop/shop",
         "text": "产品",
         "iconPath": "images/icon-shop.png",
         "selectedIconPath": "images/icon-shop-active.png"

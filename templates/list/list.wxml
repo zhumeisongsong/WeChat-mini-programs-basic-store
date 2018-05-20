@@ -1,0 +1,7 @@
+<template name="ItemCover">
+  <block>
+    <image src={{img}}/>
+    <text class="h1">{{title}}</text>
+    <text class="h1">{{content}}</text>
+  </block>
+</template>

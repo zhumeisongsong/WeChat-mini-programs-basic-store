@@ -1,0 +1,14 @@
+.cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52vw;
+  background: #fa506a;
+  color: #fff;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+}
+

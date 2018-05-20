@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/listNormal/listNormal",
+    "pages/list/list",
     "pages/listProduct/listProduct",
     "pages/proxy/proxy",
     "pages/profile/profile",
@@ -25,7 +25,7 @@
         "selectedIconPath": "images/icon-top-active.png"
       },
       {
-        "pagePath": "pages/listNormal/listNormal",
+        "pagePath": "pages/list/list",
         "text": "文化",
         "iconPath": "images/icon-culture.png",
         "selectedIconPath": "images/icon-culture-active.png"

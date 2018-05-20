@@ -16,32 +16,14 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath":"image/icon/index.png",
-        "selectedIconPath":"image/icon/index_selected.png"
+        "iconPath":"images/icon-top.png",
+        "selectedIconPath":"images/icon-top-active.png"
       },
       {
-        "pagePath":"pages/cart/cart",
-        "text":"文化",
-        "iconPath":"image/icon/cart.png",
-        "selectedIconPath":"image/icon/cart_selected.png"
-      },
-      {
-        "pagePath":"pages/member/member",
-        "text":"产品",
-        "iconPath":"image/icon/member.png",
-        "selectedIconPath":"image/icon/member_selected.png"
-      },
-      {
-        "pagePath":"pages/member/member",
-        "text":"代理",
-        "iconPath":"image/icon/member.png",
-        "selectedIconPath":"image/icon/member_selected.png"
-      },
-      {
-        "pagePath":"pages/",
+        "pagePath":"pages/profile/profile",
         "text":"我的",
-        "iconPath":"image/icon/member.png",
-        "selectedIconPath":"image/icon/member_selected.png"
+        "iconPath":"images/icon-profile.png",
+        "selectedIconPath":"images/icon-profile-active.png"
       }
     ]
   },

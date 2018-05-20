@@ -34,6 +34,7 @@ App({
     })
   },
   globalData: {
+    APIHost: 'http://120.79.187.171:8888/api/',
     userInfo: null
   }
 })

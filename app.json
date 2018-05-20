@@ -1,12 +1,53 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+  "window": {
+    "navigationBarBackgroundColor": "#333",
+    "navigationBarTitleText": "colorit",
+    "navigationBarTextStyle": "white",
+    "backgroundTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "selectedColor":"#f99",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath":"image/icon/index.png",
+        "selectedIconPath":"image/icon/index_selected.png"
+      },
+      {
+        "pagePath":"pages/cart/cart",
+        "text":"文化",
+        "iconPath":"image/icon/cart.png",
+        "selectedIconPath":"image/icon/cart_selected.png"
+      },
+      {
+        "pagePath":"pages/member/member",
+        "text":"产品",
+        "iconPath":"image/icon/member.png",
+        "selectedIconPath":"image/icon/member_selected.png"
+      },
+      {
+        "pagePath":"pages/member/member",
+        "text":"代理",
+        "iconPath":"image/icon/member.png",
+        "selectedIconPath":"image/icon/member_selected.png"
+      },
+      {
+        "pagePath":"pages/",
+        "text":"我的",
+        "iconPath":"image/icon/member.png",
+        "selectedIconPath":"image/icon/member_selected.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }

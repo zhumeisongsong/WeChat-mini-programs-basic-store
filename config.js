@@ -1,0 +1,1 @@
+export const API_HOST = 'https://www.XXX.com/tools/submit_ajax.ashx'

@@ -1,21 +1,37 @@
 /**index.wxss**/
-.userinfo {
+swiper {
+  width:100vw;
+  height:52vw;
+}
+
+.icon-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 12px;
+  text-align: center;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.icon-container image {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.icon-container text {
+  display: block;
+  padding-top: 6px;
 }
 
-.usermotto {
-  margin-top: 200px;
+.notice {
+  height: 24px;
+}
+
+.notice text {
+  line-height: 24px;
+}
+
+#myVideo {
+  width: 100vw;
+  height:52vw;
 }

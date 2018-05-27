@@ -41,16 +41,14 @@ Page({
   onIconTap: function (event) {
     let type = event.currentTarget.dataset.type
     if (type === 'video') {
-      console.log(type)
       wx.navigateTo({
         url: `../${type}/${type}`
       })
     } else if (type === 'shop') {
-      console.log(type)
       wx.switchTab({
         url: '../shop/shop'
       })
-    } else {
+    } else if(type==='story') {
       wx.navigateTo({
         url: `../list/list?type=${type}`
       })

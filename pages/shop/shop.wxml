@@ -5,13 +5,12 @@
 
   <view>
     <scroll-view>
-
     </scroll-view> 
   </view>
 
   <view class='footer-bar'> 
     <view>
-      <image/>
+      <image src='/images/icon-product.png'/>
       <view></view>
     </view>
     <button>提交订单</button>

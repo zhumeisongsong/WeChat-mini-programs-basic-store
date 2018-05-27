@@ -7,7 +7,7 @@
   </view>
 
   <view class="order-dash-bord">
-    <view>
+    <view>  
       <image src="/images/icon-top.png"/>
       <text>待付款</text>
     </view>

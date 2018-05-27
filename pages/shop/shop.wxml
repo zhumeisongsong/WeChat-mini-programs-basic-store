@@ -1,3 +1,25 @@
 <view>
-  shop
+  <view>
+    <view></view>
+  </view>
+
+  <view>
+    <scroll-view>
+
+    </scroll-view> 
+  </view>
+
+  <view> 
+    <view>
+      <image/>
+      <view></view>
+    </view>
+    <button>提交订单</button>
+  </view>
+
+  <view>
+    <view>
+      <view></view>
+    </view>
+  </view>
 </view>

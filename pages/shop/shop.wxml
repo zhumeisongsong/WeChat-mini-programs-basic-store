@@ -9,7 +9,7 @@
     </scroll-view> 
   </view>
 
-  <view> 
+  <view class='footer-bar'> 
     <view>
       <image/>
       <view></view>

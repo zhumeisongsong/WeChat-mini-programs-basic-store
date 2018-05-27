@@ -1,0 +1,31 @@
+.footer-bar{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding-left: 12px;
+  height: 44px;
+  border-top: 1px solid #eee;
+}
+
+.footer-bar image{
+  flex-grow: 1;
+  width:28px;
+  height: 26px;
+}
+
+.footer-bar .button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  margin: 0;
+  border-radius: 0;
+  background-color: #fa506a;
+  font-size: 14px;
+  color: #fff;
+  height: 100%;
+}

@@ -10,10 +10,10 @@
 
   <view class='footer-bar'> 
     <view>
-      <image src='/images/icon-product.png'/>
+      <image src='/images/icon-cart.png'/>
       <view></view>
     </view>
-    <button>提交订单</button>
+    <view class='button'>提交订单</view>
   </view>
 
   <view>

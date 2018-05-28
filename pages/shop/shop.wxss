@@ -13,7 +13,7 @@ swiper {
   justify-content: center;
   padding-top: 24px;
   flex-shrink: 0;
-  width: 100px;
+  width: 88px;
   border-right: 1px solid #eee;
 }
 

@@ -21,10 +21,13 @@ App({
               code: res.code
             },
             success: function (res) {
-              console.log(res.data)
               // let session_key =res.data.session_key
               that.globalData.unionid = res.openId
               that.globalData.openId = res.openId
+              wx.setStorage({
+                key: 'unionid',
+                value: 'res.openId'
+              })
               // if (res.data.unionid) {
               //   that.globalData.unionid = res.unionid
               // }
@@ -101,7 +104,6 @@ App({
                   }
                 }
               })
-
               // }
             }
           })
@@ -111,8 +113,6 @@ App({
       }
     })
 
-  },
-  onLoad: function () {
   },
 
   getUserInfo: function () {
@@ -128,8 +128,8 @@ App({
         guid: that.globalData.unionId
       },
       success: function (res) {
-        // that.globalData.indexInfo =res.data
-        that.globalData.indexInfo = res.data
+        console.log(res.data)
+        that.globalData.indexInfo = res.data.replace(/\ufeff/g, "")
         console.log(that.globalData.indexInfo)
       }
     })
@@ -149,7 +149,7 @@ function expresschange(that, id) {//参数说明：this, 邮费ID
     })
   } else {
     var province = that.data.province.split('-')[0];
-    if (id == '1') {
+    if (id === '1') {
       var p1 = "青海省,宁夏回族自治区,甘肃省";
       var p2 = "西藏自治区,新疆维吾尔自治区,新疆维吾尔自治区,内蒙古自治区";
       var p3 = "四川省";

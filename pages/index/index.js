@@ -41,8 +41,6 @@ Page({
     list:[]
   },
   onLoad: function () {
-    console.log('ininininin')
-    console.log(app.globalData.indexInfo)
     // if (app.globalData.userInfo) {
     //   this.setData({
     //     userInfo: app.globalData.userInfo,
@@ -81,5 +79,5 @@ Page({
         url: `../${type}/${type}`
       })
     }
-  },
+  }
 })

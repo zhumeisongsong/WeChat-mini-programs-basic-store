@@ -20,7 +20,7 @@
       <image src='/images/icon-cart.png' />
       <view></view>
     </view>
-    <view class='button' bindtap="onSubmitTap">提交订单</view>
+    <view class='button' bindtap="onOrderConfirm">提交订单</view>
   </view>
 
   <view>

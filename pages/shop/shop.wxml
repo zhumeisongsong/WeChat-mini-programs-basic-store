@@ -1,31 +1,41 @@
 <view class='container'>
   <view class="menu">
-    <view class="item" wx:for="{{category}}" data-id="{{item.id}}" ata-current="{{item.index}}" bindtap="onMenuTap">{{item.name}}</view>
+    <view class="item" wx:for="{{category}}" data-id="{{item.id}}" data-current="{{item.index}}" bindtap="onMenuTap">{{item.name}}</view>
   </view>
 
-   <view current="{{currentTab}}" duration="300" class="list"> 
+  <view current="{{currentTab}}" duration="300" class="list">
     <view class='tab-item' wx:for="{{category}}" data-id="{{item.id}}">
-      <view wx:for="{{tabList}}">
-      <image class='good-image' wx:if="{{item.img}}" src='{{host}}{{item.img}}'></image>
-      <view class='good-text'>
-       <text>{{item.name}}</text>
-       <text>{{item.zhaiyao}}</text>
-      </view>
+      <view wx:for="{{tabList}}" class='list-item'>
+        <image class='good-image' wx:if="{{item.img}}" src='{{host}}{{item.img}}'></image>
+        <view class="good-text">
+          <text class="name">{{item.name}}</text>
+          <text class="des">{{item.zhaiyao}}</text>
+
+          <view class="action">
+            <text class="price">¥ {{item.price}}.00</text>
+            <view class='action-button'>
+              <text class='remove action-icon' data-id="{{item.id}}" bindtap='removeFromCart'>-</text>
+              <text class='count'>{{item.count}}</text>
+              <text class='add action-icon' data-id="{{item.id}}" bindtap='addToCart'>+</text>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
-   </view> 
+  </view>
 
   <view class='footer-bar'>
-    <view>
+    <view class='icon-cart'>
       <image src='/images/icon-cart.png' />
-      <view></view>
-    </view>
-    <view class='button' bindtap="onOrderConfirm">提交订单</view>
+      <view class='dot' wx:if="{{count}}">{{count}}</view>
   </view>
+   <view class='total-mount'>¥ {{amount}}.00</view>
+  <view class='button' bindtap="onOrderConfirm">提交订单</view>
+</view>
 
+<view>
   <view>
-    <view>
-      <view></view>
-    </view>
+    <view></view>
   </view>
+</view>
 </view>

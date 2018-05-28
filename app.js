@@ -128,8 +128,7 @@ App({
         guid: that.globalData.unionId
       },
       success: function (res) {
-        console.log(res.data)
-        that.globalData.indexInfo = res.data.replace(/\ufeff/g, "")
+        that.globalData.indexInfo = res.data
         console.log(that.globalData.indexInfo)
       }
     })

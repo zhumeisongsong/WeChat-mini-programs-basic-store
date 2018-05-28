@@ -3,14 +3,17 @@ const app = getApp()
 
 Page({
   data: {
-    category: [],
-    tabList: [],
-    cart: [],
     host: app.globalData.APIHost,
+    category: [],
+    tabList0: [],
+    cart: [],
+    count: 0,
+    amount: 0,
+    currentTab: 0,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function () {
-    let that = this
+    this.getCarts()
 
     wx.request({
       url: app.globalData.APIHost,
@@ -19,7 +22,6 @@ Page({
         action: 'goodstype_list'
       },
       success: res => {
-        console.log(res)
         this.setData({
           category: res.data.data
         })
@@ -34,8 +36,11 @@ Page({
             type_id: typeId
           },
           success: res => {
+            for (let item of res.data.data) {
+              item.count = 1
+            }
             this.setData({
-              tabList: res.data.data
+              ['tabList']: res.data.data
             })
           }
         })
@@ -50,33 +55,56 @@ Page({
 
   },
 
-  addToCar () {
-    wx.request({
-      url: app.globalData.APIHost,
-      method: 'GET',
-      data: {},
-      success: res => {
-        this.setData({
-          tabList: res.data.data
-        })
-      }
+  addToCart (event) {
+    let id = event.currentTarget.dataset.id
+    this.wxService = new wxService
+    this.wxService.getStorage({
+      key: 'unionid'
+    }).then(res => {
+      wx.request({
+        url: app.globalData.APIHost,
+        method: 'GET',
+        data: {
+          action: 'cart_add',
+          guid: res,
+          good_id: id,
+          num: 1,
+        },
+        success: res => {
+          console.log(res)
+          this.setData({
+            amount: res.data.amount,
+            count: res.data.num
+          })
+        }
+      })
     })
+  },
 
-  },
   getCarts () {
-    wx.request({
-      url: app.globalData.APIHost,
-      method: 'GET',
-      data: {},
-      success: res => {
-        this.setData({
-          tabList: res.data.data
-        })
-        console.log(this.data.tabList)
-      }
+    this.wxService = new wxService
+    this.wxService.getStorage({
+      key: 'unionid'
+    }).then(res => {
+      wx.request({
+        url: app.globalData.APIHost,
+        method: 'GET',
+        data: {
+          action: 'cart_list',
+          guid: res
+        },
+        success: res => {
+          console.log(res)
+          this.setData({
+            cart: res.data,
+            amount: res.data.amount,
+            count: res.data.num
+          })
+        }
+      })
     })
   },
-  removeChart () {
+  removeFromCart () {
     wx.request({
       url: app.globalData.APIHost,
       method: 'GET',

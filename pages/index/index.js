@@ -37,8 +37,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    video:'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
-    list:[]
+    video: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+    list: []
   },
   onLoad: function () {
     // if (app.globalData.userInfo) {
@@ -56,25 +56,25 @@ Page({
     //     })
     //   }
     // } else {
-      // // 在没有 open-type=getUserInfo 版本的兼容处理
-      // wx.getUserInfo({
-      //   success: res => {
-      //     app.globalData.userInfo = res.userInfo
-      //     this.setData({
-      //       userInfo: res.userInfo,
-      //       hasUserInfo: true
-      //     })
-      //   }
-      // })
+    // // 在没有 open-type=getUserInfo 版本的兼容处理
+    // wx.getUserInfo({
+    //   success: res => {
+    //     app.globalData.userInfo = res.userInfo
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+    //   }
+    // })
     // }
   },
-  onIconTap: function (event) {
+  onIconTap(event) {
     let type = event.currentTarget.dataset.type
-    if(type==='shop'){
+    if (type === 'shop') {
       wx.switchTab({
         url: '../shop/shop'
       })
-    }else{
+    } else {
       wx.navigateTo({
         url: `../${type}/${type}`
       })

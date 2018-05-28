@@ -1,46 +1,47 @@
 <view class="container">
+  <!-- 需要使用 button 来授权登录 -->
+  <view class="wx-auth">
+    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  </view>
 
- <swiper class="swiper"
-         indicator-dots="{{indicatorDots}}"
-        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{imgUrls}}">
       <swiper-item>
-        <image src="{{item}}" class="slide-image" width="355" height="150"/>
+        <image src="{{item}}" class="slide-image" width="355" height="150" />
       </swiper-item>
     </block>
   </swiper>
 
   <view class="icon-container">
     <view wx:for="{{icons}}" data-type="{{item.type}}" mode="widthFix" bindtap="onIconTap">
-      <image src="{{item.src}}"/>
+      <image src="{{item.src}}" />
       <text>{{item.text}}</text>
     </view>
   </view>
 
-  <swiper class="notice"
-            autoplay="{{autoplay}}"
-            interval="{{interval}}"
-            duration="{{duration}}"
-            vertical="{{true}}">
-      <block wx:for="{{imgUrls}}">
-        <swiper-item>
-         <text>测试公告</text>
-        </swiper-item>
-      </block>
-    </swiper>
+  <swiper class="notice" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" vertical="{{true}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <text>测试公告</text>
+      </swiper-item>
+    </block>
+  </swiper>
 
-    <view class="video">
-      <video id="myVideo"
-             src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-             danmu-list="{{danmuList}}"
-             enable-danmu
-             danmu-btn
-             controls></video>
-    </view>
+  <view class="video">
+    <video id="myVideo" src="{{video}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+  </view>
 
-    <view>
-      <text>今日推荐</text>
-      <text>全方位的生活指南，每天都有新乐趣</text>
+  <view class='title'>
+    <text class='h1'>今日推荐</text>
+    <text class='p'>全方位的生活指南，每天都有新乐趣</text>
+  </view>
+
+  <view class="normal-list">
+    <view wx:for="{{list}}" class="normal-item" bindtap="onItemTap">
+      <image src="{{item.src}}"></image>
+      <text class='item-title'>{{item.title}}</text>
+      <text class='item-title'>{{item.content}}</text>
     </view>
+  </view>
 
 </view>

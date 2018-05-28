@@ -1,19 +1,26 @@
-<view>
-  <view>
-    <view></view>
+<view class='container'>
+  <view class="menu">
+    <view class="item" wx:for="{{category}}" data-id="{{item.id}}" ata-current="{{item.index}}" bindtap="onMenuTap">{{item.name}}</view>
   </view>
 
-  <view>
-    <scroll-view>
-    </scroll-view> 
-  </view>
+   <view current="{{currentTab}}" duration="300" class="list"> 
+    <view class='tab-item' wx:for="{{category}}" data-id="{{item.id}}">
+      <view wx:for="{{tabList}}">
+      <image class='good-image' wx:if="{{item.img}}" src='{{host}}{{item.img}}'></image>
+      <view class='good-text'>
+       <text>{{item.name}}</text>
+       <text>{{item.zhaiyao}}</text>
+      </view>
+      </view>
+    </view>
+   </view> 
 
-  <view class='footer-bar'> 
+  <view class='footer-bar'>
     <view>
-      <image src='/images/icon-cart.png'/>
+      <image src='/images/icon-cart.png' />
       <view></view>
     </view>
-    <view class='button'>提交订单</view>
+    <view class='button' bindtap="onSubmitTap">提交订单</view>
   </view>
 
   <view>

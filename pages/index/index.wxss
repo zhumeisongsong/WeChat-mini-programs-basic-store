@@ -1,7 +1,12 @@
 /**index.wxss**/
+
 swiper {
-  width:100vw;
-  height:52vw;
+  width: 100vw;
+  height: 46vw;
+}
+
+.slide-image{
+  width: 100%;
 }
 
 .icon-container {
@@ -23,15 +28,34 @@ swiper {
   padding-top: 6px;
 }
 
-.notice {
-  height: 24px;
+.notice{
+  height: 36px;
 }
 
 .notice text {
+  padding-left: 12px;
   line-height: 24px;
 }
 
 #myVideo {
   width: 100vw;
-  height:52vw;
+  height: 52vw;
+}
+
+.wx-auth{
+  position:fixed;
+  bottom:0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  border-radius:0;
+}
+
+.wx-auth button{
+  height: 44px;
+  line-height: 44px;
+  background-color: #fa506a;
+  color: #fff;
+  border-radius:0; 
+  font-size: 14px;
 }

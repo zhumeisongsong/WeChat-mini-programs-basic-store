@@ -2,6 +2,6 @@ const app = getApp()
 
 Page({
   data: {
-    src: '/images/test-qr.png'
+    src: '/images/pic/test-qr.png'
   }
 })

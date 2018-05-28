@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/culture/culture",
-    "pages/list/list",
+    "pages/story/story",
+    "pages/food/food",
     "pages/video/video",
     "pages/shop/shop",
     "pages/proxy/proxy",

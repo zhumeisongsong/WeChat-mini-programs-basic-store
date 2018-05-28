@@ -1,3 +1,4 @@
+import wxService from '../../plugins/WxService'
 const app = getApp()
 
 Page({
@@ -7,6 +8,10 @@ Page({
     callbackcount: 15
   },
   onLoad: function () {
+    this.setData({
+      amount: 300,
+
+    })
     this.fetchData()
   },
   toDetail(event){
@@ -29,12 +34,57 @@ Page({
         console.log(res)
       }
     })
-  }
+  },
+  onOrderConfirm () {
+    this.wxService = new wxService
+    this.wxService.getStorage({
+      key: 'unionid'
+    }).then(res => {
+      console.log(res)
+      wx.request({
+        url: app.globalData.APIHost,
+        method: 'GET',
+        data: {
+          action: 'order_add',
+          guid: encodeURIComponent(res),
+          express_id: 1,
+          accept_name: '张三',
+          province: '四川',
+          city: '成都',
+          contry: '龙泉驿区',
+          address: 'XX小区',
+          mobile: '18108272714',
+          post_code: '610000',
+          express_fee: 6
+        },
+        success: res => {
+          console.log(res)
+        }
+      })
+    })
+
+  },
+  geSignature (){
+    this.wxService = new wxService
+    this.wxService.getStorage({
+      key: 'openId'
+    }).then(res => {
+      wx.request({
+        url: app.globalData.APIHost,
+        method: 'GET',
+        data: {
+          openid: res,
+          total_fee: this.amount,
+        }
+      })
+    })
+  },
+
 })
 
 //express_fee为全局变量
 function expresschange(that, id) {//参数说明：this, 邮费ID
-  if (id == '') {
+  if (id === '') {
     that.setData({
       express_fee: '6'
     })

@@ -2,9 +2,12 @@ const app = getApp()
 
 Page({
   data: {
-    list: [],
+    list: [
+      {},
+      {},
+      {}],
     pageindex: 1,
-    callbackcount: 15
+    callbackcount: 10
   },
   onLoad: function () {
     this.fetchData()

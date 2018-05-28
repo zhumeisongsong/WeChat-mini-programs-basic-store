@@ -30,7 +30,7 @@
       <view class='dot' wx:if="{{count}}">{{count}}</view>
   </view>
    <view class='total-mount'>¥ {{amount}}.00</view>
-  <view class='button' bindtap="onOrderConfirm">提交订单</view>
+  <view class='button' bindtap="goConfirm">提交订单</view>
 </view>
 
 <view>

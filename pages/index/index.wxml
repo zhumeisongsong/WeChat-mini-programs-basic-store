@@ -5,7 +5,7 @@
   </view>
 
   <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:key="unique">
       <swiper-item>
         <image src="{{item}}" class="slide-image" width="355" height="150" />
       </swiper-item>
@@ -13,14 +13,14 @@
   </swiper>
 
   <view class="icon-container">
-    <view wx:for="{{icons}}" data-type="{{item.type}}" mode="widthFix" bindtap="onIconTap">
+    <view wx:for="{{icons}}" wx:key="unique" data-type="{{item.type}}" mode="widthFix" bindtap="onIconTap">
       <image src="{{item.src}}" />
       <text>{{item.text}}</text>
     </view>
   </view>
 
   <swiper class="notice" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" vertical="{{true}}">
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:key="unique">
       <swiper-item>
         <text>测试公告</text>
       </swiper-item>
@@ -37,7 +37,7 @@
   </view>
 
   <view class="normal-list">
-    <view wx:for="{{list}}" class="normal-item" bindtap="onItemTap">
+    <view wx:for="{{list}}" wx:key="unique" class="normal-item" bindtap="onItemTap">
       <image src="{{item.src}}"></image>
       <text class='item-title'>{{item.title}}</text>
       <text class='item-title'>{{item.content}}</text>

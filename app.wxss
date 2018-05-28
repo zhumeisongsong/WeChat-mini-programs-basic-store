@@ -4,6 +4,7 @@ view, image, text {
 
 view {
   font-size: 12px;
+  color: #333;
 }
 
 image {

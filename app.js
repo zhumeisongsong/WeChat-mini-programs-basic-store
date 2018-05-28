@@ -1,7 +1,5 @@
 App({
   onLaunch: function () {
-    let that = this
-
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -10,23 +8,24 @@ App({
     // 获取登陆信息 获取openId 获取用户信息 注册登录
     wx.login({
       success: res => {
-        let code = res.code
         if (res.code) {
-          console.log(res)
           wx.request({
-            url: that.globalData.APIHost,
+            url: this.globalData.APIHost,
             method: 'GET',
             data: {
               action: 'get_openid',
               code: res.code
             },
-            success: function (res) {
+            success: res => {
               // let session_key =res.data.session_key
-              that.globalData.unionid = res.openId
-              that.globalData.openId = res.openId
+              this.globalData.unionid = res.openId
+              this.globalData.openId = res.openId
               wx.setStorage({
                 key: 'unionid',
-                value: 'res.openId'
+                value: res.unionid
+              }, {
+                key: 'openId',
+                value: res.openId
               })
               // if (res.data.unionid) {
               //   that.globalData.unionid = res.unionid
@@ -35,13 +34,13 @@ App({
               // 获取用户信息
               // 查看是否授权
               wx.getSetting({
-                success: function (res) {
+                success: res => {
                   if (res.authSetting['scope.userInfo']) {
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                     wx.getUserInfo({
-                      success: function (res) {
+                      success: res => {
                         console.log(res.userInfo)
-                        that.callLogin()
+                        this.callLogin()
                       }
                     })
                   } else {
@@ -50,18 +49,18 @@ App({
                         console.log(userData)
                         wx.getStorage({
                           key: 'userId',
-                          success: function (res) {
+                          success: (res) => {
                             console.log('ininininin222222')
                             console.log(res.data)
                           },
-                          fail: function () {
+                          fail: () => {
                             console.log('ininininineeeee')
                             wx.request({
-                              url: that.globalData.APIHost,
+                              url: this.globalData.APIHost,
                               method: 'GET',
                               data: {
                                 action: 'register',
-                                guid: that.globalData.unionid,
+                                guid: this.globalData.unionid,
                                 nick_name: userData.userInfo.nickName,
                                 avatar: userData.userInfo.avatarUrl,
                               },
@@ -74,15 +73,15 @@ App({
                               }
                             })
                           },
-                          complete: function () {
+                          complete: () => {
                             console.log('ininininin')
-                            that.callLogin()
+                            this.callLogin()
                           }
                         })
 
                         // // 可以将 res 发送给后台解码出 unionId
                         // wx.request({
-                        //   url: that.globalData.APIHost,
+                        //   url: this.globalData.APIHost,
                         //   method: 'GET',
                         //   data: {
                         //     action: 'get_unionid',
@@ -115,27 +114,30 @@ App({
 
   },
 
-  getUserInfo: function () {
+  getUserInfo() {
 
   },
-  callLogin: function () {
-    let that = this
+  callLogin () {
     wx.request({
-      url: that.globalData.APIHost,
+      url: this.globalData.APIHost,
       method: 'GET',
       data: {
         action: 'login',
-        guid: that.globalData.unionId
+        guid: this.globalData.unionid
       },
-      success: function (res) {
-        that.globalData.indexInfo = res.data
-        console.log(that.globalData.indexInfo)
+      success: (res) => {
+        this.globalData.indexInfo = res.data
+        console.log(this.globalData.indexInfo)
       }
     })
   },
   globalData: {
     APIHost: 'https://creaformation.cn/tools/submit_ajax.ashx',
+    PAYHost: 'https://creaformation.cn/api/payment/WxPayAPI/pay.ashx',
     userInfo: null,
-    indexInfo: null
+    indexInfo: null,
+    unionid: null,
+    openId: null,
+    hasAuthButton: false
   }
 })

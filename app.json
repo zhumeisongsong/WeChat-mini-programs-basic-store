@@ -2,13 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/culture/culture",
-    "pages/story/story",
-    "pages/food/food",
-    "pages/video/video",
     "pages/shop/shop",
     "pages/proxy/proxy",
     "pages/profile/profile",
-    "pages/logs/logs"
+    "pages/food/food",
+    "pages/story/story",
+    "pages/video/video",
+    "pages/userInfo/userInfo",
+    "pages/address/address"
   ],
   "window": {
     "navigationBarBackgroundColor": "#333",

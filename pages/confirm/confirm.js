@@ -7,19 +7,22 @@ Page({
     pageindex: 1,
     callbackcount: 15
   },
+
   onLoad: function () {
     this.setData({
       amount: 300,
-
+      orderNum: 3333
     })
     this.fetchData()
   },
+
   toDetail(event){
     let id = event.currentTarget.dataset.id
     wx.navigateTo({
       url: `../detail/detail/?id=${id}`
     })
   },
+
   fetchData(){
     wx.request({
       url: app.globalData.APIHost,
@@ -35,7 +38,8 @@ Page({
       }
     })
   },
-  onOrderConfirm () {
+
+  orderSubmit () {
     this.wxService = new wxService
     this.wxService.getStorage({
       key: 'unionid'
@@ -46,7 +50,7 @@ Page({
         method: 'GET',
         data: {
           action: 'order_add',
-          guid: encodeURIComponent(res),
+          guid: res,
           express_id: 1,
           accept_name: '张三',
           province: '四川',
@@ -62,8 +66,8 @@ Page({
         }
       })
     })
-
   },
+
   geSignature (){
     this.wxService = new wxService
     this.wxService.getStorage({
@@ -75,10 +79,14 @@ Page({
         data: {
           openid: res,
           total_fee: this.amount,
+          out_order_no: this.orderNum
+        },
+        success: res => {
+
         }
       })
     })
-  },
+  }
 
 })
 

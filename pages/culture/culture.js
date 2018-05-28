@@ -2,13 +2,19 @@ const app = getApp()
 
 Page({
   data: {
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  bindViewTap: function() {
-
+    list:[],
+    pageindex: 1,
+    callbackcount: 15
   },
   onLoad: function () {
+  },
+  toDetail(event){
+    let id = event.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `../detail/detail/?id=${id}`
+    })
+  },
+  fetchData(){
+
   }
 })

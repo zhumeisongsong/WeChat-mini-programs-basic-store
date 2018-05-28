@@ -1,11 +1,11 @@
 <view class='container'>
   <view class="menu">
-    <view class="item" wx:for="{{category}}" data-id="{{item.id}}" data-current="{{item.index}}" bindtap="onMenuTap">{{item.name}}</view>
+    <view class="item" wx:for="{{category}}" wx:key="unique" data-id="{{item.id}}" data-current="{{item.index}}" bindtap="onMenuTap">{{item.name}}</view>
   </view>
 
   <view current="{{currentTab}}" duration="300" class="list">
-    <view class='tab-item' wx:for="{{category}}" data-id="{{item.id}}">
-      <view wx:for="{{tabList}}" class='list-item'>
+    <view class='tab-item' wx:for="{{category}}" wx:key="unique" data-id="{{item.id}}">
+      <view wx:for="{{tabList}}" wx:key="unique" class='list-item'>
         <image class='good-image' wx:if="{{item.img}}" src='{{host}}{{item.img}}'></image>
         <view class="good-text">
           <text class="name">{{item.name}}</text>

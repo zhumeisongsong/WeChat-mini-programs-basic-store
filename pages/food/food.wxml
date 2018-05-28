@@ -1,3 +1,15 @@
 <view class="flex-center">
+  <scroll-view scroll-y="true" bindscrolltolower="scrollLower">
+    <view class="result-item" wx:for="{{list}}" wx:key="unique" data-data="{{item}}">
+     
+      <text class="title">{{item.name}}</text>
+      <view class="subtitle">
+        <text wx:for="{{item.singer}}" wx:key="unique">{{item.name}}</text>
+      </view>
+    </view>
+    <view class="loading" hidden="{{!loading}}">正在载入更多...</view>
+    <view class="loading complete" hidden="{{!loadingComplete}}">已加载全部</view>
+  </scroll-view>
+
   <view>暂无数据</view>
 </view>

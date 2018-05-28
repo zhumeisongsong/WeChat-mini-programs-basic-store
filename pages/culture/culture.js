@@ -2,11 +2,12 @@ const app = getApp()
 
 Page({
   data: {
-    list:[],
+    list: [],
     pageindex: 1,
     callbackcount: 15
   },
   onLoad: function () {
+    this.fetchData()
   },
   toDetail(event){
     let id = event.currentTarget.dataset.id
@@ -15,6 +16,18 @@ Page({
     })
   },
   fetchData(){
-
+    wx.request({
+      url: app.globalData.APIHost,
+      method: 'GET',
+      data: {
+        action: 'article_list',
+        category: 56,
+        pageSize: 10,
+        pageIndex: 1
+      },
+      success: (res) => {
+        console.log(res)
+      }
+    })
   }
 })

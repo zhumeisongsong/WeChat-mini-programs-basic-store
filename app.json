@@ -1,15 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/culture/culture",
+    "pages/list/culture/culture",
     "pages/shop/shop",
     "pages/proxy/proxy",
     "pages/profile/profile",
-    "pages/food/food",
-    "pages/story/story",
-    "pages/video/video",
-    "pages/userInfo/userInfo",
-    "pages/address/address"
+    "pages/list/food/food",
+    "pages/list/story/story",
+    "pages/list/video/video",
+    "pages/profile/userInfo/userInfo",
+    "pages/profile/address/address",
+    "pages/list/order/order"
   ],
   "window": {
     "navigationBarBackgroundColor": "#333",
@@ -29,7 +30,7 @@
         "selectedIconPath": "images/icon-top-active.png"
       },
       {
-        "pagePath": "pages/culture/culture",
+        "pagePath": "pages/list/culture/culture",
         "text": "文化",
         "iconPath": "images/icon-culture.png",
         "selectedIconPath": "images/icon-culture-active.png"

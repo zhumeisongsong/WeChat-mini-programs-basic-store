@@ -1,3 +1,5 @@
+<import src="../../wxParse/wxParse.wxml" />
+
 <view class="container">
   <!-- 需要使用 button 来授权登录 -->
   <view class="wx-auth">
@@ -5,23 +7,25 @@
   </view>
 
   <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <swiper-item wx:for="{{imgUrls}}" wx:key="unique">
-        <image src="{{Host}}{{item.img}}" data-type="{{item.type_id}}" data-id="{{item.id}}" class="slide-image" width="355" height="150" bindTap="goToDetail"/>
-      </swiper-item>
+    <swiper-item wx:for="{{imgUrls}}" wx:key="unique">
+      <image src="{{Host}}{{item.img}}" data-type="{{item.type_id}}" data-id="{{item.id}}" class="slide-image" width="355" height="150" mode="aspectFill" bindTap="goToDetail" />
+    </swiper-item>
   </swiper>
 
   <view class="icon-container">
     <view wx:for="{{icons}}" wx:key="unique" data-type="{{item.type}}" mode="widthFix" bindtap="onIconTap">
-      <image src="{{item.src}}" />
+      <image src="{{item.src}}" mode="aspectFill" />
       <text>{{item.text}}</text>
     </view>
   </view>
 
   <view class="notice-container">
-    <image src="{{iconNotice}}" />
-    <text>{{notice}}</text>
+    <image src="{{iconNotice}}" mode="aspectFill" />
+    <view class="text">
+      <template is="wxParse" data="{{wxParseData:notice.nodes}}" />
+    </view>
   </view>
-  
+
   <!-- <swiper class="notice" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" vertical="{{true}}">
     <block wx:for="{{imgUrls}}" wx:key="unique">
       <swiper-item>
@@ -40,10 +44,15 @@
   </view>
 
   <view class="normal-list">
-    <view wx:for="{{list}}" wx:key="unique" class="normal-item" bindtap="onItemTap">
-      <image src="{{item.src}}"></image>
-      <text class='item-title'>{{item.title}}</text>
-      <text class='item-title'>{{item.content}}</text>
+    <view wx:for="{{list}}" wx:for-index="index" wx:key="unique" class="normal-item" bindtap="onItemTap">
+      <image src="{{Host}}{{item.img}}" mode="aspectFill"></image>
+      <view class='title'>
+        <text class='h1'>{{item.title}}</text>
+        <view class="text">
+          <template is="wxParse" data="{{wxParseData: content}}" />
+        </view>
+      </view>
+
     </view>
   </view>
 

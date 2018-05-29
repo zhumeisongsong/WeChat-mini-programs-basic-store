@@ -5,7 +5,6 @@ const app = getApp()
 Page({
   data: {
     imgUrls: [],
-    notice: '',
     video: '',
     list: [],
     indicatorDots: false,
@@ -46,15 +45,21 @@ Page({
     this.wxService.getStorage({
       key: 'indexInfo'
     }).then(res => {
-      console.log(res)
       this.setData({
         imgUrls: res.data.slid,
-        notice: res.data.note,
         video: app.globalData.Host + res.data.video,
         list: res.data.news
       })
-    })
+      WxParse.wxParse('notice', 'html', decodeURIComponent(res.data.note), this)
 
+      for (let i in this.list) {
+        console.log(this.list[i].content)
+        WxParse.wxParse('item' + (i + 1), 'html', decodeURIComponent(this.list[i].content), this)
+        if (i === this.list.length - 1) {
+          WxParse.wxParseTemArray("list", 'content', this.list.length, that)
+        }
+      }
+    })
   },
 
   onIconTap(event) {

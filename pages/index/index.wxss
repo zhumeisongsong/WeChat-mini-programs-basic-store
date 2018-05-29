@@ -63,3 +63,13 @@ swiper {
 .hidden{
   display: none;
 }
+
+.notice-container{
+  display: flex;
+  padding: 0 12px 12px 12px;
+}
+
+.notice-container image{
+  width: 24px;
+  height: 24px;
+}

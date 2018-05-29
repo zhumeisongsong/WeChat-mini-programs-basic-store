@@ -7,7 +7,7 @@
   <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{imgUrls}}" wx:key="unique">
       <swiper-item>
-        <image src="{{item}}" class="slide-image" width="355" height="150" />
+        <image src="{{app.global.Host}}{{item.img}}" data-type="{{item.type_id}}" data-id="{{item.id}}" class="slide-image" width="355" height="150" bindTap="goToDetail"/>
       </swiper-item>
     </block>
   </swiper>
@@ -19,13 +19,18 @@
     </view>
   </view>
 
-  <swiper class="notice" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" vertical="{{true}}">
+  <view class="notice-container">
+    <image src="{{iconNotice}}" />
+    <text>{{notice}}</text>
+  </view>
+  
+  <!-- <swiper class="notice" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" vertical="{{true}}">
     <block wx:for="{{imgUrls}}" wx:key="unique">
       <swiper-item>
-        <text>测试公告</text>
+       
       </swiper-item>
     </block>
-  </swiper>
+  </swiper> -->
 
   <view class="video">
     <video id="myVideo" src="{{video}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>

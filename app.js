@@ -24,7 +24,7 @@ App({
               this.globalData.openid = res.data.openid
               wx.setStorage({
                 key: 'unionid',
-                value:res.data.openid
+                value: res.data.openid
               }, {
                 key: 'openid',
                 value: res.data.openid
@@ -42,7 +42,7 @@ App({
                   if (res.authSetting['scope.userInfo']) {
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                     wx.getUserInfo({
-                      success:  userData => {
+                      success: userData => {
                         console.log(res.userInfo)
                         wx.request({
                           url: this.globalData.APIHost,
@@ -55,7 +55,7 @@ App({
                           },
                           success: res => {
                             console.log(res)
-                            this.callLogin ()
+                            this.callLogin()
                             wx.setStorage({
                               key: '',
                               data: ''
@@ -66,7 +66,6 @@ App({
                       }
                     })
                   } else {
-
                     wx.getUserInfo({
                       success: userData => {
                         console.log(userData)
@@ -133,7 +132,6 @@ App({
         }
       }
     })
-
   },
 
   getUserInfo() {
@@ -148,19 +146,20 @@ App({
         guid: this.globalData.unionid
       },
       success: (res) => {
-        console.log(res)
-        this.globalData.indexInfo = res.data
-        console.log(this.globalData.indexInfo)
+        wx.setStorage({
+          key: 'indexInfo',
+          data: res.data.data[0]
+        })
       }
     })
   },
   globalData: {
+    Host: 'https://creaformation.cn/',
     APIHost: 'https://creaformation.cn/tools/submit_ajax.ashx',
     PAYHost: 'https://creaformation.cn/api/payment/WxPayAPI/pay.ashx',
     userInfo: null,
-    indexInfo: null,
     unionid: null,
-    openId: null,
+    openid: null,
     hasAuthButton: false
   }
 })

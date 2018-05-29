@@ -33,7 +33,8 @@ Page({
         text: '试吃视频'
       }
     ],
-    iconNotice: '/images/icon-notice.png'
+    iconNotice: '/images/icon-notice.png',
+    Host: app.globalData.Host
   },
   onLoad: function () {
     this.fetchData()
@@ -46,7 +47,7 @@ Page({
     }).then(res => {
       console.log(res)
       this.setData({
-        slides: res.data.slid,
+        imgUrls: res.data.slid,
         notice: res.data.note,
         video: app.globalData.Host + res.data.video,
         list: res.data.news

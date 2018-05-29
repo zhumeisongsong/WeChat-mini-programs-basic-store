@@ -66,10 +66,20 @@ swiper {
 
 .notice-container{
   display: flex;
+  align-items:center;
   padding: 0 12px 12px 12px;
 }
 
 .notice-container image{
   width: 24px;
   height: 24px;
+}
+
+.notice-container text{
+  flex-grow: 1;
+  margin-left: 12px;
+  padding:0 12px;
+  height: 36px;
+  line-height: 36px;
+  background-color: #ffbdbf;
 }

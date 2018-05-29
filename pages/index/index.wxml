@@ -5,11 +5,9 @@
   </view>
 
   <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{imgUrls}}" wx:key="unique">
-      <swiper-item>
-        <image src="{{app.global.Host}}{{item.img}}" data-type="{{item.type_id}}" data-id="{{item.id}}" class="slide-image" width="355" height="150" bindTap="goToDetail"/>
+      <swiper-item wx:for="{{imgUrls}}" wx:key="unique">
+        <image src="{{Host}}{{item.img}}" data-type="{{item.type_id}}" data-id="{{item.id}}" class="slide-image" width="355" height="150" bindTap="goToDetail"/>
       </swiper-item>
-    </block>
   </swiper>
 
   <view class="icon-container">

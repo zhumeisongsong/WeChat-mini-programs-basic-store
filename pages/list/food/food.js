@@ -10,6 +10,9 @@ Page({
     callbackcount: 10
   },
   onLoad: function () {
+
+  },
+  onShow: function () {
     this.fetchData()
   },
   toDetail(event){

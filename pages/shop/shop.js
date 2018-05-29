@@ -59,6 +59,7 @@ Page({
     this.wxService.getStorage({
       key: 'unionid'
     }).then(res => {
+      console.log(res)
       wx.request({
         url: app.globalData.APIHost,
         method: 'GET',
@@ -120,6 +121,9 @@ Page({
   },
 
   goConfirm(){
+    wx.navigateTo({
+      url: '../confirm/confirm'
+    })
 
   }
 })

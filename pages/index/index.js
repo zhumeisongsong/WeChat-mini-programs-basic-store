@@ -76,7 +76,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: `../${type}/${type}`
+        url: `../list/${type}/${type}`
       })
     }
   }

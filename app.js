@@ -17,20 +17,24 @@ App({
               code: res.code
             },
             success: res => {
+              console.log(res)
               // let session_key =res.data.session_key
-              this.globalData.unionid = res.openId
-              this.globalData.openId = res.openId
+              console.log(res.data.openid)
+              this.globalData.unionid = res.data.openid
+              this.globalData.openid = res.data.openid
               wx.setStorage({
                 key: 'unionid',
-                value: res.unionid
+                value:res.data.openid
               }, {
-                key: 'openId',
-                value: res.openId
+                key: 'openid',
+                value: res.data.openid
               })
+
               // if (res.data.unionid) {
               //   that.globalData.unionid = res.unionid
               // }
               // else {
+
               // 获取用户信息
               // 查看是否授权
               wx.getSetting({
@@ -38,19 +42,37 @@ App({
                   if (res.authSetting['scope.userInfo']) {
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                     wx.getUserInfo({
-                      success: res => {
+                      success:  userData => {
                         console.log(res.userInfo)
-                        this.callLogin()
+                        wx.request({
+                          url: this.globalData.APIHost,
+                          method: 'GET',
+                          data: {
+                            action: 'register',
+                            guid: this.globalData.unionid,
+                            nick_name: userData.userInfo.nickName,
+                            avatar: userData.userInfo.avatarUrl,
+                          },
+                          success: res => {
+                            console.log(res)
+                            this.callLogin ()
+                            wx.setStorage({
+                              key: '',
+                              data: ''
+                            })
+                          }
+                        })
+                        // this.callLogin()
                       }
                     })
                   } else {
+
                     wx.getUserInfo({
                       success: userData => {
                         console.log(userData)
                         wx.getStorage({
                           key: 'userId',
                           success: (res) => {
-                            console.log('ininininin222222')
                             console.log(res.data)
                           },
                           fail: () => {
@@ -126,6 +148,7 @@ App({
         guid: this.globalData.unionid
       },
       success: (res) => {
+        console.log(res)
         this.globalData.indexInfo = res.data
         console.log(this.globalData.indexInfo)
       }

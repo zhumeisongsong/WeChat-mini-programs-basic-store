@@ -13,30 +13,7 @@ Page({
       amount: 300,
       orderNum: 3333
     })
-    this.fetchData()
-  },
-
-  toDetail(event){
-    let id = event.currentTarget.dataset.id
-    wx.navigateTo({
-      url: `../detail/detail/?id=${id}`
-    })
-  },
-
-  fetchData(){
-    wx.request({
-      url: app.globalData.APIHost,
-      method: 'GET',
-      data: {
-        action: 'article_list',
-        category: 56,
-        pageSize: 10,
-        pageIndex: 1
-      },
-      success: (res) => {
-        console.log(res)
-      }
-    })
+    this.orderSubmit()
   },
 
   orderSubmit () {

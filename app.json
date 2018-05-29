@@ -5,6 +5,7 @@
     "pages/shop/shop",
     "pages/proxy/proxy",
     "pages/profile/profile",
+    "pages/confirm/confirm",
     "pages/list/food/food",
     "pages/list/story/story",
     "pages/list/video/video",

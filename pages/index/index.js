@@ -1,4 +1,5 @@
 import wxService from '../../plugins/WxService'
+import WxParse from'../../wxParse/wxParse.js'
 const app = getApp()
 
 Page({

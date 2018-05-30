@@ -1,6 +1,12 @@
+import wxService from '../../plugins/WxService'
+import WxParse from '../../wxParse/wxParse.js'
 const app = getApp()
 
 Page({
+  data: {
+    title: '',
+    Host: app.globalData.Host
+  },
   onLoad: function (e) {
     this.fetchData(e.id)
   },
@@ -14,7 +20,11 @@ Page({
         id: id
       },
       success: (res) => {
-        console.log(res)
+        this.setData({
+          title: res.data.data[0].title
+        })
+        WxParse.wxParse('content', 'html', decodeURIComponent(res.data.data[0].content), this)
+
       }
     })
   }

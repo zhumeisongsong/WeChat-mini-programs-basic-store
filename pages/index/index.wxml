@@ -8,7 +8,7 @@
 
   <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <swiper-item wx:for="{{imgUrls}}" wx:key="unique">
-      <image src="{{Host}}{{item.img}}" data-type="{{item.type_id}}" data-id="{{item.id}}" class="slide-image" width="355" height="150" mode="aspectFill" bindTap="goDetail" />
+      <image src="{{Host}}{{item.img}}" data-type="{{item.type_id}}" data-id="{{item.id}}" class="slide-image" width="355" height="150" mode="aspectFill" bindtap="goDetail" />
     </swiper-item>
   </swiper>
 
@@ -44,7 +44,7 @@
   </view>
 
   <view class="normal-list">
-    <view wx:for="{{list}}" wx:for-index="index" wx:key="unique" class="normal-item" bindtap="onItemTap">
+    <view wx:for="{{list}}" wx:for-index="index" wx:key="unique" class="normal-item" bindtap="goDetail" data-type="{{item.type_id}}" data-id="{{item.id}}">
       <image src="{{Host}}{{item.img}}" mode="aspectFill"></image>
       <view class='title'>
         <text class='h1'>{{item.title}}</text>

@@ -21,7 +21,7 @@
 
   <view class="grey"></view>
 
-  <view class="list">
+  <view class="text-list">
     <view>
       <image src="../../images/icon-me.png" />
       <text class="list-text" bindtap="goProile"> 个人资料</text>

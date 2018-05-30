@@ -76,16 +76,16 @@ Page({
   },
   goDetail(event) {
     let type = event.currentTarget.dataset.type
-    let id = event.currentTarget.daraset.id
-    if(type==='story'){
-      wx.navigateTo({
-        url: '../detail/detail'
-      })
-    }else{
-      wx.navigateTo({
-        url: '../detail/detail'
-      })
-    }
-   
+    let id = event.currentTarget.dataset.id
+    // if(type==='story'){
+    wx.navigateTo({
+      url: `../detail/detail?id=${id}`
+    })
+    // }else{
+    //   wx.navigateTo({
+    //     url: '../detail/detail'
+    //   })
+    // }
+
   }
 })

@@ -1,5 +1,5 @@
 import wxService from '../../plugins/WxService'
-import WxParse from'../../wxParse/wxParse.js'
+import WxParse from '../../wxParse/wxParse.js'
 const app = getApp()
 
 Page({
@@ -40,7 +40,7 @@ Page({
     this.fetchData()
   },
 
-  fetchData(){
+  fetchData() {
     this.wxService = new wxService
     this.wxService.getStorage({
       key: 'indexInfo'
@@ -73,5 +73,19 @@ Page({
         url: `../list/${type}/${type}`
       })
     }
+  },
+  goDetail(event) {
+    let type = event.currentTarget.dataset.type
+    let id = event.currentTarget.daraset.id
+    if(type==='story'){
+      wx.navigateTo({
+        url: '../detail/detail'
+      })
+    }else{
+      wx.navigateTo({
+        url: '../detail/detail'
+      })
+    }
+   
   }
 })

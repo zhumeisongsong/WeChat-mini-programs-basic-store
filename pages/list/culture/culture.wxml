@@ -1,18 +1,17 @@
-<view class="list-view">
-  <scroll-view scroll-y="true" bindscrolltolower="scrollLower">
-    <view class="result-item" wx:for="{{list}}" wx:key="unique" data-data="{{item}}">
-     
-      <text class="title">{{item.name}}</text>
-      <view class="subtitle">
-        <text wx:for="{{item.singer}}" wx:key="unique">{{item.name}}</text>
+<view class="container list-view">
+  <view class="item" wx:for="{{data}}" wx:key="unique" data-id="{{item.id}}" bindtap='goDetail'>
+    <image src="{{host}}{{item.img}}"
+    mode="aspectFill" />
+    <view class='title'>
+        <text class='h1'>{{item.title}}</text>
+        <view class="text">
+          <template is="wxParse" data="{{wxParseData: content}}" />
+        </view>
       </view>
-    </view>
-    <view class="loading" hidden="{{!loading}}">正在载入更多...</view>
-    <view class="loading complete" hidden="{{!loadingComplete}}">已加载全部</view>
-  </scroll-view>
+  </view>
 </view>
+<!-- <scroll-view scroll-y="true " bindscrolltolower="scrollLower ">
 
-
-<!-- <view class="flex-center">
-  <view>暂无数据</view>
-</view> -->
+    <view class="loading " hidden="{{!loading}} ">正在载入更多...</view>
+    <view class="loading complete " hidden="{{!loadingComplete}} ">已加载全部</view>
+  </scroll-view> -->

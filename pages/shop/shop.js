@@ -3,7 +3,7 @@ const app = getApp()
 
 Page({
   data: {
-    host: app.globalData.APIHost,
+    host: app.globalData.Host,
     category: [],
     tabList0: [],
     cart: [],

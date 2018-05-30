@@ -1,0 +1,3 @@
+.list-view .item image{
+  height: 50vw;
+}

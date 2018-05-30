@@ -21,7 +21,7 @@ Page({
       method: 'GET',
       data: {
         action: 'article_list',
-        category: 57,
+        category_id: 57,
         pageSize: 10,
         pageIndex: 1
       },

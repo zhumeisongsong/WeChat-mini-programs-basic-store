@@ -2,16 +2,19 @@
   "pages": [
     "pages/index/index",
     "pages/list/culture/culture",
-    "pages/shop/shop",
-    "pages/proxy/proxy",
-    "pages/profile/profile",
-    "pages/confirm/confirm",
     "pages/list/food/food",
     "pages/list/story/story",
     "pages/list/video/video",
+    "pages/list/order/order",
+    "pages/shop/shop",
+    "pages/confirm/confirm",
+    "pages/proxy/proxy",
+    "pages/profile/profile",
     "pages/profile/userInfo/userInfo",
     "pages/profile/address/address",
-    "pages/list/order/order"
+    "pages/profile/contact/contact",
+    "pages/detail/detail",
+    "pages/detail/secondDetail/secondDetail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#333",

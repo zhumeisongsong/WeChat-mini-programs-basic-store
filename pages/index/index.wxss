@@ -7,25 +7,6 @@ swiper {
   width: 100%;
 }
 
-.icon-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 16px 12px;
-  text-align: center;
-}
-
-.icon-container image {
-  width: 24px;
-  height: 24px;
-  margin: 0 auto;
-}
-
-.icon-container text {
-  display: block;
-  padding-top: 6px;
-}
-
 .notice{
   height: 36px;
 }

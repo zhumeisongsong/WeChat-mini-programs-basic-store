@@ -16,11 +16,37 @@ Page({
     this.orderSubmit()
   },
 
+  getCarts () {
+    this.wxService = new wxService
+    this.wxService.getStorage({
+      key: 'unionid'
+    }).then(res => {
+      console.log(res)
+      wx.request({
+        url: app.globalData.APIHost,
+        method: 'GET',
+        data: {
+          action: 'cart_list',
+          guid: res
+        },
+        success: res => {
+          console.log(res)
+          this.setData({
+            cart: res.data,
+            amount: res.data.amount,
+            count: res.data.num
+          })
+        }
+      })
+    })
+  },
+
   orderSubmit () {
     this.wxService = new wxService
     this.wxService.getStorage({
       key: 'unionid'
     }).then(res => {
+      console.log(res)
       console.log(res)
       wx.request({
         url: app.globalData.APIHost,

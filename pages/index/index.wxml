@@ -26,14 +26,6 @@
     </view>
   </view>
 
-  <!-- <swiper class="notice" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" vertical="{{true}}">
-    <block wx:for="{{imgUrls}}" wx:key="unique">
-      <swiper-item>
-       
-      </swiper-item>
-    </block>
-  </swiper> -->
-
   <view class="video">
     <video id="myVideo" src="{{video}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
   </view>
@@ -48,8 +40,9 @@
       <image src="{{Host}}{{item.img}}" mode="aspectFill"></image>
       <view class='title'>
         <text class='h1'>{{item.title}}</text>
-        <view class="text">
-          <template is="wxParse" data="{{wxParseData: content}}" />
+        <view class="p">
+          <rich-text nodes="{{item.content}}"></rich-text>
+
         </view>
       </view>
 

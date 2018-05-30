@@ -34,9 +34,13 @@ Page({
       }
     ],
     iconNotice: '/images/icon-notice.png',
-    Host: app.globalData.Host
+    Host: app.globalData.Host,
+    canIUse: false
   },
   onLoad: function () {
+    this.setData({
+      canIUse: app.globalData.canIUse
+    })
     this.fetchData()
   },
 
@@ -45,20 +49,17 @@ Page({
     this.wxService.getStorage({
       key: 'indexInfo'
     }).then(res => {
+      console.log(decodeURIComponent(res.data.note))
+      // for (let item of res.data.news) {
+      //   console.log(decodeURIComponent(item.content))
+      //   item.content =  escape2Html(item.content)
+      // }
       this.setData({
         imgUrls: res.data.slid,
         video: app.globalData.Host + res.data.video,
         list: res.data.news
       })
       WxParse.wxParse('notice', 'html', decodeURIComponent(res.data.note), this)
-
-      for (let i in this.list) {
-        console.log(this.list[i].content)
-        WxParse.wxParse('item' + (i + 1), 'html', decodeURIComponent(this.list[i].content), this)
-        if (i === this.list.length - 1) {
-          WxParse.wxParseTemArray("list", 'content', this.list.length, that)
-        }
-      }
     })
   },
 
@@ -89,3 +90,8 @@ Page({
 
   }
 })
+
+function escape2Html(str) {
+  var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+  return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+}

@@ -15,7 +15,7 @@
             <text class="price">¥ {{item.price}}.00</text>
             <view class='action-button'>
               <text class='remove action-icon' data-id="{{item.id}}" bindtap='removeFromCart'>-</text>
-              <text class='count'>{{item.count}}</text>
+              <text class='count'>{{cart[index].number?cart[index].number:item.count}}</text>
               <text class='add action-icon' data-id="{{item.id}}" bindtap='addToCart'>+</text>
             </view>
           </view>
@@ -28,14 +28,14 @@
     <view class='icon-cart'>
       <image src='/images/icon-cart.png' />
       <view class='dot' wx:if="{{count}}">{{count}}</view>
+    </view>
+    <view class='total-mount'>¥ {{amount}}.00</view>
+    <view class='button' bindtap="goConfirm">提交订单</view>
   </view>
-   <view class='total-mount'>¥ {{amount}}.00</view>
-  <view class='button' bindtap="goConfirm">提交订单</view>
-</view>
 
-<view>
   <view>
-    <view></view>
+    <view>
+      <view></view>
+    </view>
   </view>
-</view>
 </view>

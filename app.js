@@ -4,7 +4,57 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    this.getSetting()
+  },
+  getSetting () {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          console.log('eeee')
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: userData => {
+              this.globalData.userInfo = userData
+              this.login()
+            }
+          })
+        } else {
+          this.globalData.canIUse = true
+          this.login()
+        }
+      }
+    })
+  },
 
+  getUnionid(){
+    wx.getUserInfo({
+      success: userData => {
+        console.log(userData)
+        this.login()
+        // 可以将 res 发送给后台解码出 unionId
+        wx.request({
+          url: this.globalData.APIHost,
+          method: 'GET',
+          data: {
+            action: 'get_unionid',
+            encryptedDataStr: encodeURIComponent(userData.encryptedData),
+            iv: userData.iv,
+            key: session_key
+          },
+          success: res => {
+            console.log(res)
+          }
+        })
+        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        // 所以此处加入 callback 以防止这种情况
+        if (this.userInfoReadyCallback) {
+          this.userInfoReadyCallback(res)
+        }
+      }
+    })
+  },
+
+  login(){
     // 获取登陆信息 获取openId 获取用户信息 注册登录
     wx.login({
       success: res => {
@@ -18,8 +68,7 @@ App({
             },
             success: res => {
               console.log(res)
-              // let session_key =res.data.session_key
-              console.log(res.data.openid)
+              let session_key = res.data.session_key
               this.globalData.unionid = res.data.openid
               this.globalData.openid = res.data.openid
               wx.setStorage({
@@ -29,101 +78,16 @@ App({
                 key: 'openid',
                 value: res.data.openid
               })
-
+              this.needRegister()
               // if (res.data.unionid) {
-              //   that.globalData.unionid = res.unionid
+              //   this.globalData.unionid = res.unionid
+              //   localStorage.setStorage({
+              //     key: 'unionid',
+              //     value: res.data.unionid
+              //   })
+              //   this.needRegister()
               // }
               // else {
-
-              // 获取用户信息
-              // 查看是否授权
-              wx.getSetting({
-                success: res => {
-                  if (res.authSetting['scope.userInfo']) {
-                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-                    wx.getUserInfo({
-                      success: userData => {
-                        console.log(res.userInfo)
-                        wx.request({
-                          url: this.globalData.APIHost,
-                          method: 'GET',
-                          data: {
-                            action: 'register',
-                            guid: this.globalData.unionid,
-                            nick_name: userData.userInfo.nickName,
-                            avatar: userData.userInfo.avatarUrl,
-                          },
-                          success: res => {
-                            console.log(res)
-                            this.callLogin()
-                            wx.setStorage({
-                              key: '',
-                              data: ''
-                            })
-                          }
-                        })
-                        // this.callLogin()
-                      }
-                    })
-                  } else {
-                    wx.getUserInfo({
-                      success: userData => {
-                        console.log(userData)
-                        wx.getStorage({
-                          key: 'userId',
-                          success: (res) => {
-                            console.log(res.data)
-                          },
-                          fail: () => {
-                            console.log('ininininineeeee')
-                            wx.request({
-                              url: this.globalData.APIHost,
-                              method: 'GET',
-                              data: {
-                                action: 'register',
-                                guid: this.globalData.unionid,
-                                nick_name: userData.userInfo.nickName,
-                                avatar: userData.userInfo.avatarUrl,
-                              },
-                              success: res => {
-                                console.log(res)
-                                wx.setStorage({
-                                  key: '',
-                                  data: ''
-                                })
-                              }
-                            })
-                          },
-                          complete: () => {
-                            console.log('ininininin')
-                            this.callLogin()
-                          }
-                        })
-
-                        // // 可以将 res 发送给后台解码出 unionId
-                        // wx.request({
-                        //   url: this.globalData.APIHost,
-                        //   method: 'GET',
-                        //   data: {
-                        //     action: 'get_unionid',
-                        //     encryptedDataStr: encodeURIComponent(userData.encryptedData),
-                        //     iv: userData.iv,
-                        //     key: session_key
-                        //   },
-                        //   success: res => {
-                        //     console.log(res)
-                        //   }
-                        // })
-                        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                        // 所以此处加入 callback 以防止这种情况
-                        if (this.userInfoReadyCallback) {
-                          this.userInfoReadyCallback(res)
-                        }
-                      }
-                    })
-                  }
-                }
-              })
               // }
             }
           })
@@ -133,9 +97,39 @@ App({
       }
     })
   },
+  needRegister () {
+    wx.getStorage({
+      key: 'userToken',
+      success: (res) => {
+        this.callLogin()
+      },
+      fail: () => {
+        this.callRegister()
+      }
+    })
+  },
+  callRegister () {
+    wx.request({
+      url: this.globalData.APIHost,
+      method: 'GET',
+      data: {
+        action: 'register',
+        guid: this.globalData.unionid,
+        nick_name: this.globalData.userInfo.nickName,
+        avatar: this.globalData.userInfo.avatarUrl,
+      },
+      success: res => {
+        if (res.status === 0) {
 
-  getUserInfo() {
-
+        } else {
+          wx.setStorage({
+            key: 'userToken',
+            data: 22
+          })
+        }
+        this.callLogin()
+      }
+    })
   },
   callLogin () {
     wx.request({
@@ -160,6 +154,7 @@ App({
     userInfo: null,
     unionid: null,
     openid: null,
-    hasAuthButton: false
+    hasAuthButton: false,
+    canIUse: false
   }
 })

@@ -39,15 +39,6 @@ textarea {
   height: 120px;
 }
 
-.list-text {
-  width: 40%;
-}
-
-.list-text +input, .list-text+textarea {
-  width: 200px;
-  line-height: 44px;
-}
-
 .icon-right {
   flex-shrink: 0;
 }

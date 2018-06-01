@@ -86,6 +86,7 @@ scroll-view {
 }
 
 .text-list view {
+  position: relative;
   display: flex;
   height: 44px;
   line-height: 44px;
@@ -99,15 +100,14 @@ scroll-view {
 
 .text-list input, textarea {
   flex-grow: 1;
+  height: 100%;
+  padding-left: 6px;
 }
 
-.text-list view+view {
-  border-top: 1px solid #eee;
-}
-
-.text-list view text {
+.text-list .list-text {
+  flex-shrink: 0;
   display: block;
-  width: 100%;
+  min-width: 60px;
   font-size: 14px;
   padding-left: 6px;
   line-height: 44px;
@@ -148,8 +148,11 @@ scroll-view {
 }
 
 .icon-right {
-  width: 7px;
-  height: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6px;
+  height: 10px;
   margin: 18px;
 }
 

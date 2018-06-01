@@ -22,18 +22,18 @@
   <view class="grey"></view>
 
   <view class="text-list">
-    <view>
+    <view class='ui-border-b'>
       <image src="../../images/icon-me.png" />
-      <text class="list-text" bindtap="goProile"> 个人资料</text>
+      <text class="list-text" bindtap="goProfile"> 个人资料</text>
     </view>
-    <view>
+    <view class='ui-border-b'>
       <image src="../../images/icon-address.png" />
       <text class="list-text" bindtap="goAddress">地址管理</text>
     </view>
     <!-- <view>
       <text bindtap=''>用户协议</text>
     </view> -->
-    <view>
+    <view class='ui-border-b'>
       <image src="../../images/icon-contact.png" />
       <text class="list-text" bindtap="goContact">联系我们</text>
     </view>

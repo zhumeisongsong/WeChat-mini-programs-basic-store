@@ -1,2 +1,3 @@
-<!--pages/profile/contact/contact.wxml-->
-<text>pages/profile/contact/contact.wxml</text>
+<view class='flex-center'>
+  <image src='../../../images/pic/contact.jpeg' mode="aspectFill"></image>
+</view>

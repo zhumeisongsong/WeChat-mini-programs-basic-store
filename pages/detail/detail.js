@@ -10,6 +10,8 @@ Page({
   onLoad: function (e) {
     this.fetchData(e.id)
   },
+  onShow: function () {
+  },
 
   fetchData(id){
     wx.request({
@@ -23,9 +25,20 @@ Page({
         this.setData({
           title: res.data.data[0].title
         })
-        WxParse.wxParse('content', 'html', decodeURIComponent(res.data.data[0].content), this)
+        let content = decodeURIComponent(res.data.data[0].content)
+        console.log(content)
+        WxParse.wxParse('content', 'html', content, this)
 
       }
     })
   }
 })
+
+setStrMarke=function(str,subStr,indexs) {
+  var string = str
+  for (var i = 0; i < indexs.length; i++) {
+    var s = app.globalData.Host
+    string = string.substring(0, indexs[i]) + s + string.substring(indexs[i] + subStr.length, string.length);
+  }
+  return string;
+}

@@ -43,7 +43,7 @@ Page({
       url: './userInfo/userInfo'
     })
   },
-  goCotact(){
+  goContact(){
     wx.navigateTo({
       url: './contact/contact'
     })

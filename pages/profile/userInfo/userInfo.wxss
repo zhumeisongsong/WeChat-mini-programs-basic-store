@@ -1,1 +1,18 @@
-/* pages/userInfo/userInfo.wxss */
+.container {
+  background: #f2f2f2;
+}
+
+.text-list {
+  background-color: #fff;
+}
+
+.button {
+  background: #fa506a;
+  margin: 12px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 4px;
+}

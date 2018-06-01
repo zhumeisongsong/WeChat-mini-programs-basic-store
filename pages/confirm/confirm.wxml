@@ -2,7 +2,29 @@
   <view class='text-list'>
     <view>
       <text class="list-text">常用收货度地址</text>
-      <image class='icon-right' src="../../images/icon-right.png" />
+      <image class="icon-right" src="../../images/icon-right.png" />
+    </view>
+  </view>
+
+  <view class="grey"></view>
+
+  <view class="text-list">
+    <view class="ui-border-b">
+      <text class="list-text">收货人</text>
+      <input placeholder="姓名" />
+    </view>
+    <view class="ui-border-b">
+      <text class="list-text">联系电话</text>
+      <input placeholder="手机或固话" />
+    </view>
+    <view class="ui-border-b">
+      <text class="list-text">选择地区</text>
+      <input placeholder="地区信息" />
+      <image class="icon-right" src="../../images/icon-right.png" />
+    </view>
+    <view class="auto-height">
+      <text class="list-text">街道门牌信息</text>
+      <textarea placeholder='详细地址'></textarea>
     </view>
   </view>
 
@@ -10,31 +32,9 @@
 
   <view class="text-list">
     <view>
-      <text class="list-text">收货人</text>
-      <input placeholder='姓名' />
-    </view>
-    <view>
-      <text class="list-text">联系电话</text>
-      <input placeholder='手机或固话' />
-    </view>
-    <view>
-      <text class="list-text">选择地区</text>
-      <input placeholder='地区信息' />
-      <image class='icon-right' src="../../images/icon-right.png" />
-    </view>
-    <view class='auto-height'>
-      <text class="list-text">街道门牌信息</text>
-      <textarea class="list-text">详细地址</textarea>
-    </view>
-  </view>
-
-  <view class="grey"></view>
-
-  <view class='text-list'>
-    <view>
       <text class="list-title">商品详情</text>
     </view>
-    <view class='list-item'>
+    <view class="list-item">
       <text class="list-title">cccc{{item.name}}</text>
       <text class="list-count">X{{item.count}}.00</text>
       <text class="list-amount">¥{{item.amount}}.00</text>

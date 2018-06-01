@@ -1,2 +1,18 @@
-<!--pages/userInfo/userInfo.wxml-->
-<text>pages/userInfo/userInfo.wxml</text>
+<view class="container">
+  <view class="text-list">
+    <view class="ui-border-b">
+      <text class="list-text">昵称</text>
+      <input placeholder='用户昵称' />
+    </view>
+    <view class="ui-border-b">
+      <text class="list-text">手机号</text>
+      <input placeholder='手机号' />
+    </view>
+    <view class="ui-border-b">
+      <text class="list-text">邮箱</text>
+      <input placeholder='有效邮箱' />
+    </view>
+  </view>
+  
+  <view class="button">提交</view>
+</view>

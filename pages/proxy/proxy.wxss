@@ -6,7 +6,7 @@
   justify-content: center;
 }
 .image{
-  width: 240rpx;
-  height: 240rpx;
+  width: 100vh;
+  height:100vh;
   margin:0 auto;
 }

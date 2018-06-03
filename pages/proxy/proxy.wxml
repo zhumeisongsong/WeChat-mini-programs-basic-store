@@ -1,6 +1,6 @@
 <view class='display-center'>
   <image class="image"
          mode="scaleToFill"
-         src="{{src}}"></image>
+         src="{{host}}{{src}}"></image>
 
 </view>

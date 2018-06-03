@@ -13,13 +13,13 @@ swiper {
   flex-direction: column;
   padding-top: 24px;
   flex-shrink: 0;
-  width: 66px;
+  width: 72px;
 }
 
 .menu .item {
-  width: 100%;
+  width:60px;
   height: 24px;
-  margin: 0 12px;
+  margin: 0 6px;
   line-height: 24px;
   text-align: center;
   background-color: #ccc;
@@ -133,6 +133,7 @@ swiper {
   border-radius: 6px;
   color: #fff;
   font-size: 10px;
+  text-align: center;
 }
 
 .total-mount {

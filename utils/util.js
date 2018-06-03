@@ -27,31 +27,13 @@ export const pathJoinHost = (string) => {
   return result.join('')
 }
 
-export const native2ascii = (nativecode) => {
-  nativecode = nativecode.split("");
-  var ascii = "";
-  for (var i = 0; i < nativecode.length; i++) {
-    var code = Number(nativecode[i].charCodeAt(0));
-    if (code > 127) {
-      var charAscii = code.toString(16);
-      charAscii = new String("0000").substring(charAscii.length, 4) + charAscii;
-      ascii += "\\u" + charAscii;
+export const findIndex = (l, o) => {
+  let objStr = JSON.stringify(o)
+  return l.reduce((index, ele, i) => {
+    if (JSON.stringify(ele) === objStr) {
+      return i
     } else {
-      ascii += nativecode[i];
+      return index
     }
-  }
-  return ascii;
-}
-
-export const ascii2native = (asciicode) => {
-  asciicode = asciicode.split("\\u");
-  var nativeValue = asciicode[0];
-  for (var i = 1; i < asciicode.length; i++) {
-    var code = asciicode[i];
-    nativeValue += String.fromCharCode(parseInt("0x" + code.substring(0, 4)));
-    if (code.length > 4) {
-      nativeValue += code.substring(4, code.length);
-    }
-  }
-  return nativeValue;
+  }, -1)
 }

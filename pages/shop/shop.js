@@ -1,4 +1,4 @@
-import wxService from '../../plugins/WxService'
+import {findIndex} from '../../utils/util'
 const app = getApp()
 
 Page({
@@ -70,15 +70,16 @@ Page({
     let obj = this.data.cart
     let isNew = true
 
+    let index = findIndex(this.data.tabList, item)
+
     if (item.count === 0) {
       item.count = 1
     }
-    let price = item.price / item.count
-    // let list = this.data.tabList
+
     if (obj.length > 0) {
       for (let i in obj) {
         if (obj[i].id === item.id) {
-          obj[i].price = obj[i].price + price
+          obj[i].price = obj[i].price + this.data.tabList[index].price
           obj[i].count = obj[i].count + 1
           console.log(obj[i])
           isNew = false
@@ -90,38 +91,51 @@ Page({
       obj.push(item)
     }
 
+    this.data.tabList[index].count = this.data.tabList[index].count + 1
+    console.log(this.data.tabList[index].count)
+
     this.setData({
       cart: obj,
-      // tabList: list,
+      tabList: this.data.tabList,
       count: this.data.count + 1,
-      amount: this.data.amount + price
+      amount: this.data.amount + this.data.tabList[index].price
     })
   },
   removeFromCart(event) {
     let item = event.currentTarget.dataset.item
     let obj = this.data.cart
-    let price = item.price / item.count
 
-    console.log(item)
+    let index = findIndex(this.data.tabList, item)
 
     if (obj.length > 0) {
       for (let i of obj) {
         if (i.id === item.id && i.count > 0) {
-          i.price = i.price - price
+          i.price = i.price - this.data.tabList[index].price
           i.count = i.count - 1
         }
       }
-      if (item.count > 1)
+      if (item.count > 0)
         this.setData({
           cart: obj,
-          // tabList: list,
           count: this.data.count - 1,
-          amount: this.data.amount - price
+          amount: this.data.amount - this.data.tabList[index].price
         })
+    }
+
+    if (this.data.tabList[index].count) {
+      this.data.tabList[index].count -= 1
+      this.setData({
+        tabList: this.data.tabList
+      })
     }
   },
   clearCart() {
+    for (let item of this.data.tabList) {
+      item.count = 0
+    }
+
     this.setData({
+      tabList: this.data.tabList,
       cart: [],
       count: 0,
       amount: 0
@@ -140,13 +154,13 @@ Page({
   },
 
   goConfirm() {
-    if(this.data.count>0){
+    if (this.data.count > 0) {
       this.submitCart()
       this.clearCart()
       wx.navigateTo({
         url: '../confirm/confirm'
       })
-    }else{
+    } else {
       wx.showToast({
         icon: 'none',
         title: '请添加商品',
@@ -170,5 +184,6 @@ Page({
         },
       })
     }
-  }
+  },
+
 })

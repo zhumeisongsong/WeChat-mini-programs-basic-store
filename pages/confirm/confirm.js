@@ -4,37 +4,58 @@ const app = getApp()
 Page({
   data: {
     cart: [],
+    address: {},
+    deliverAmount: 0
   },
 
   onLoad: function () {
+    this.getCarts()
   },
 
   getCarts () {
-    this.wxService = new wxService
-    this.wxService.getStorage({
-      key: 'unionid'
-    }).then(res => {
-      console.log(res)
+    wx.request({
+      url: app.globalData.APIHost,
+      method: 'GET',
+      data: {
+        action: 'cart_list',
+        guid: app.globalData.unionid
+      },
+      success: res => {
+        console.log(res)
+        this.setData({
+          cart: res.data,
+          totalAmount: res.data.amount
+        })
+      }
+    })
+  },
+
+  clearCart(){
+    for (let item of this.data.cart) {
       wx.request({
         url: app.globalData.APIHost,
         method: 'GET',
         data: {
-          action: 'cart_list',
-          guid: res
+          action: 'cart_goods_update',
+          guid: app.globalData.unionid,
+          goodis: item.id,
+          clear: 1
         },
-        success: res => {
+        success: (res) => {
           console.log(res)
-          this.setData({
-            cart: res.data,
-            amount: res.data.amount,
-            count: res.data.num
-          })
         }
       })
-    })
+    }
   },
 
   orderSubmit () {
+    if (JSON.stringify(this.data.address) === '{}') {
+      wx.showToast({
+        icon: 'none',
+        title: '请选择收货地址',
+      })
+      return
+    }
     wx.request({
       url: app.globalData.APIHost,
       method: 'GET',
@@ -42,34 +63,32 @@ Page({
         action: 'order_add',
         guid: app.globalData.unionid,
         express_id: 1,
-        accept_name: '张三',
-        province: '四川',
-        city: '成都',
-        contry: '龙泉驿区',
-        address: 'XX小区',
-        mobile: '18108272714',
-        post_code: '610000',
+        accept_name: this.data.address.userName,
+        province: this.data.address.provinceName,
+        city: this.data.address.cityName,
+        contry: this.data.address.countyName,
+        address: this.data.address.detailInfo,
+        mobile: this.data.address.telNumber,
+        post_code: this.data.address.nationalCode,
         express_fee: 6
       },
       success: res => {
         console.log(res)
-        let orderNo = res.data.order_no
-        let orderAmount = res.data.order_amout
+        this.payConfirm(res)
+      },
+      fail: err => {
+        console.log(err)
       }
     })
   },
 
   selectAddress(){
     wx.chooseAddress({
-      success: function (res) {
-        console.log(res.userName)
-        console.log(res.postalCode)
-        console.log(res.provinceName)
-        console.log(res.cityName)
-        console.log(res.countyName)
-        console.log(res.detailInfo)
-        console.log(res.nationalCode)
-        console.log(res.telNumber)
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          address: res
+        })
       }
     })
   },
@@ -120,18 +139,36 @@ Page({
     }
   },
 
-  goPay() {
-    console.log('in')
+  payConfirm(res){
+    wx.showModal({
+      title: '订单结果',
+      content: res.data.msg,
+      confirmText: '去支付',
+      cancelText: '稍后支付',
+      success: (res) => {
+        if (res.confirm) {
+          this.goPay(res)
+        } else {
+          wx.redirectTo({
+            url: '../list/order/order'
+          })
+        }
+
+      }
+    })
+  },
+
+  goPay(res) {
+    console.log(res)
     wx.request({
       url: app.globalData.PAYHost,
       method: 'GET',
       data: {
         openid: app.globalData.unionid,
-        total_fee: 0.1,
-        out_order_no: 'B18060402275247'
+        total_fee: res.data.order_amout,
+        out_order_no: res.data.order_no
       },
       success: (res) => {
-        console.log(res)
         wx.requestPayment({
           'timeStamp': res.data.timeStamp,
           'nonceStr': res.data.nonceStr,
@@ -168,7 +205,7 @@ Page({
                   } else {
                     wx.showModal({
                       title: '错误提示',
-                      content: res.data.msg,
+                      content: res.data.msg
                     })
                   }
                 }

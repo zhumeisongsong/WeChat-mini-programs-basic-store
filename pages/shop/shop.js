@@ -140,10 +140,18 @@ Page({
   },
 
   goConfirm() {
-    this.submitCart()
-    wx.navigateTo({
-      url: '../confirm/confirm'
-    })
+    if(this.data.count>0){
+      this.submitCart()
+      this.clearCart()
+      wx.navigateTo({
+        url: '../confirm/confirm'
+      })
+    }else{
+      wx.showToast({
+        icon: 'none',
+        title: '请添加商品',
+      })
+    }
   },
 
   submitCart(){
@@ -164,74 +172,3 @@ Page({
     }
   }
 })
-
-// canIUse: wx.canIUse('button.open-type.getUserInfo')
-// getCarts () {
-//   this.wxService = new wxService
-//   this.wxService.getStorage({
-//     key: 'unionid'
-//   }).then(res => {
-//     wx.request({
-//       url: app.globalData.APIHost,
-//       method: 'GET',
-//       data: {
-//         action: 'cart_list',
-//         guid: res
-//       },
-//       success: res => {
-//         console.log('is cart')
-//
-//         let cartData = res.data.data
-//         let newCartData = []
-//         let j = 0
-//
-//         for (let i in cartData) {
-//           if (newCartData.length > 0) {
-//             for (let j in newCartData) {
-//               if (newCartData[j].id === cartData[i].id) {
-//                 newCartData[j].price = cartData[j].price + cartData[i].price
-//                 newCartData[j].number = cartData[j].number + cartData[i].number
-//               } else {
-//                 console.log(cartData[i])
-//                 newCartData.concat(cartData[i])
-//               }
-//             }
-//           } else {
-//             newCartData[j] = cartData[i]
-//           }
-//         }
-//         console.log(newCartData)
-//         this.setData({
-//           cart: res.data.data,
-//           amount: res.data.amount,
-//           count: res.data.num
-//         })
-//       }
-//     })
-//   })
-// // },
-
-
-// app.getUserOpenid((openid) => {
-//   this.setData({
-//     unionid: openid
-//   })
-//   console.log(this.unionid)
-//   wx.request({
-//     url: app.globalData.APIHost,
-//     method: 'GET',
-//     data: {
-//       action: 'cart_add',
-//       guid: this.unionid,
-//       good_id: id,
-//       num: 1,
-//     },
-//     success: res => {
-//       console.log(res)
-//       this.setData({
-//         amount: res.data.amount,
-//         count: res.data.num
-//       })
-//     }
-//   })
-// })

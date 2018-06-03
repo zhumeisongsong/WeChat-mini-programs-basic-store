@@ -34,8 +34,7 @@ Page({
     })
   },
   goAddress(){
-    wx.navigateTo({
-      url: './address/address'
+    wx.chooseAddress({
     })
   },
   goProfile(){

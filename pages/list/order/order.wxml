@@ -9,7 +9,7 @@
       <view wx:for="{{item.goods}}" wx:key='unique' class='good-item'>
         <view>{{item.title}}</view>
         <view class='num'>x{{item.num}}</view>
-        <view>¥ {{item.price}}.00</view>
+        <view class='price'>¥ {{item.price}}.00</view>
       </view>
     </view>
 

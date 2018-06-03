@@ -170,7 +170,12 @@ Page({
           'complete': (res) => {
             if (res.errMsg === 'requestPayment:ok') {
               wx.request({
-                url: app.globalData.serverUrl + '/tools/submit_ajax.ashx?action=wx_pay_result&order_no=' + res.data.order_no,
+                url: app.globalData.APIHost,
+                method: 'GET',
+                data: {
+                  action: 'pay_result',
+                  order_no: res.data.order_no
+                },
                 success: function (res) {
                   if (res.data.status === '1') {
                     wx.showToast({

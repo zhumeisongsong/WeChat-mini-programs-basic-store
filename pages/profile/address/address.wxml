@@ -1,19 +1,2 @@
-  <view class="text-list">
-    <view class="ui-border-b">
-      <text class="list-text">收货人</text>
-      <input placeholder="姓名" />
-    </view>
-    <view class="ui-border-b">
-      <text class="list-text">联系电话</text>
-      <input placeholder="手机或固话" />
-    </view>
-    <view class="ui-border-b">
-      <text class="list-text">选择地区</text>
-      <input placeholder="地区信息" />
-      <image class="icon-right" src="../../images/icon-right.png" />
-    </view>
-    <view class="auto-height">
-      <text class="list-text">街道门牌信息</text>
-      <textarea placeholder='详细地址'></textarea>
-    </view>
-  </view>
+<view>
+<view>

@@ -14,8 +14,8 @@
     </view>
 
     <view class='order-footer ui-border-t'>
-      <view>收货人:{{accept_name}} </view>
-      <view>联系方式:{{address}} </view>
+      <view>收货人:{{item.accept_name}}</view>
+      <view>联系方式:{{item.address}} </view>
       <view>收货地址: {{item.mobile}}</view>
     </view>
   </view>

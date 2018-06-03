@@ -3,16 +3,10 @@ const app = getApp()
 
 Page({
   data: {
-    list: [],
-    pageindex: 1,
-    callbackcount: 15
+    cart: [],
   },
 
   onLoad: function () {
-    this.setData({
-      amount: 300,
-      orderNum: 3333
-    })
   },
 
   getCarts () {
@@ -65,29 +59,18 @@ Page({
     })
   },
 
-  geSignature (){
-    this.wxService = new wxService
-    this.wxService.getStorage({
-      key: 'openId'
-    }).then(res => {
-      wx.request({
-        url: app.globalData.APIHost,
-        method: 'GET',
-        data: {
-          openid: res,
-          total_fee: this.amount,
-          out_order_no: this.orderNum
-        },
-        success: res => {
-
-        }
-      })
-    })
-  },
-
   selectAddress(){
-    wx.navigateTo({
-      url: '../profile/address/address'
+    wx.chooseAddress({
+      success: function (res) {
+        console.log(res.userName)
+        console.log(res.postalCode)
+        console.log(res.provinceName)
+        console.log(res.cityName)
+        console.log(res.countyName)
+        console.log(res.detailInfo)
+        console.log(res.nationalCode)
+        console.log(res.telNumber)
+      }
     })
   },
 

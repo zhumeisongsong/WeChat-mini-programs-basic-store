@@ -26,7 +26,8 @@ Page({
         this.setData({
           title: res.data.data[0].title,
         })
-        let content = decodeURIComponent(res.data.data[0].content)
+        let content = decodeURI(res.data.data[0].content)
+        console.log(content)
         let result = pathJoinHost(content)
         WxParse.wxParse('content', 'html', result, this)
       }

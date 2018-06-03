@@ -4,8 +4,8 @@ Page({
   data: {
     data: [],
     pageindex: 1,
-    callbackcount: 10,
-    host:app.globalData.Host
+    callbackcount: 20,
+    host: app.globalData.Host
   },
   onLoad: function () {
     this.fetchData()
@@ -18,12 +18,13 @@ Page({
       data: {
         action: 'article_list',
         category_id: 56,
-        pageSize: 10,
+        pageSize: 20,
         pageIndex: 1
       },
       success: (res) => {
+        console.log(res.data)
         this.setData({
-          data:res.data.data
+          data: res.data.data
         })
       }
     })
@@ -32,7 +33,7 @@ Page({
   goDetail(event) {
     let id = event.currentTarget.dataset.id
     wx.navigateTo({
-      url: `../../detail/detail?id=${id}`
+      url: `../../detail/textDetail/textDetail?id=${id}`
     })
   },
 })

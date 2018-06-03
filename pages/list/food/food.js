@@ -27,7 +27,7 @@ Page({
       data: {
         action: 'article_list',
         category_id: 58,
-        pageSize: 10,
+        pageSize: 20,
         pageIndex: 1
       },
       success: (res) => {

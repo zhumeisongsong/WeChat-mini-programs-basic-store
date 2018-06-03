@@ -90,6 +90,13 @@ scroll-view {
   height: auto;
 }
 
+.text-list view{
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+
 .text-list input, textarea {
   flex-grow: 1;
   height: 100%;

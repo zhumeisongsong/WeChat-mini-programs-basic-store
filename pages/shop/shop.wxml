@@ -19,7 +19,6 @@
               <text class='add action-icon' data-item='{{item}}' data-index='{{index}}'  bindtap='addToCart'>+</text>
             </view>
           </view>
-
         </view>
       </view>
     </view>
@@ -35,7 +34,6 @@
   </view>
 
   <view class='modal' wx-if='{{modal}}'>
-
     <view class='cart-container'>
       <view class='cart-header ui-border-b'>
         <text class='total-count'>

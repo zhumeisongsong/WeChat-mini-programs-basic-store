@@ -1,5 +1,5 @@
 import WxParse from '../../../wxParse/wxParse.js'
-import {pathJoinHost, ascii2native,native2ascii} from '../../../utils/util'
+import {pathJoinHost} from '../../../utils/util'
 const app = getApp()
 
 Page({

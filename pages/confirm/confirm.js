@@ -135,7 +135,7 @@ Page({
         })
       }
     }
-  }
+  },
 
   goPay() {
     console.log('in')

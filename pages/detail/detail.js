@@ -1,4 +1,3 @@
-import wxService from '../../plugins/WxService'
 import WxParse from '../../wxParse/wxParse.js'
 import {pathJoinHost} from '../../utils/util'
 const app = getApp()

@@ -1,4 +1,5 @@
 import WxParse from '../../../wxParse/wxParse.js'
+import {pathJoinHost} from '../../../utils/util'
 const app = getApp()
 
 Page({
@@ -21,24 +22,14 @@ Page({
         id: id
       },
       success: (res) => {
-        console.log(res)
+        console.log(res.data)
         this.setData({
           title: res.data.data[0].title
         })
         let content = decodeURIComponent(res.data.data[0].content)
         console.log(content)
         WxParse.wxParse('content', 'html', content, this)
-
       }
     })
   }
 })
-
-setStrMarke=function(str,subStr,indexs) {
-  var string = str
-  for (var i = 0; i < indexs.length; i++) {
-    var s = app.globalData.Host
-    string = string.substring(0, indexs[i]) + s + string.substring(indexs[i] + subStr.length, string.length);
-  }
-  return string;
-}

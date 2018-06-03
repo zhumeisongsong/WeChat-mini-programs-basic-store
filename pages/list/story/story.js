@@ -16,10 +16,10 @@ Page({
   onReachBottom: function () {
 
   },
-  toDetail(event) {
+  goDetail(event) {
     let id = event.currentTarget.dataset.id
     wx.navigateTo({
-      url: `../detail/detail/?id=${id}`
+      url: `../../detail/detail?id=${id}`
     })
   },
   fetchData() {

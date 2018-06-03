@@ -13,7 +13,6 @@ Page({
       amount: 300,
       orderNum: 3333
     })
-    this.orderSubmit()
   },
 
   getCarts () {
@@ -42,32 +41,27 @@ Page({
   },
 
   orderSubmit () {
-    this.wxService = new wxService
-    this.wxService.getStorage({
-      key: 'unionid'
-    }).then(res => {
-      console.log(res)
-      console.log(res)
-      wx.request({
-        url: app.globalData.APIHost,
-        method: 'GET',
-        data: {
-          action: 'order_add',
-          guid: res,
-          express_id: 1,
-          accept_name: '张三',
-          province: '四川',
-          city: '成都',
-          contry: '龙泉驿区',
-          address: 'XX小区',
-          mobile: '18108272714',
-          post_code: '610000',
-          express_fee: 6
-        },
-        success: res => {
-          console.log(res)
-        }
-      })
+    wx.request({
+      url: app.globalData.APIHost,
+      method: 'GET',
+      data: {
+        action: 'order_add',
+        guid: app.globalData.unionid,
+        express_id: 1,
+        accept_name: '张三',
+        province: '四川',
+        city: '成都',
+        contry: '龙泉驿区',
+        address: 'XX小区',
+        mobile: '18108272714',
+        post_code: '610000',
+        express_fee: 6
+      },
+      success: res => {
+        console.log(res)
+        let orderNo = res.data.order_no
+        let orderAmount = res.data.order_amout
+      }
     })
   },
 

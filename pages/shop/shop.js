@@ -147,23 +147,21 @@ Page({
   },
 
   submitCart(){
-    wx.request({
-      url: app.globalData.APIHost,
-      method: 'GET',
-      data: {
-        action: 'cart_goods_update',
-        guid: '',
-        goodis: '',
-        quantity: 1,
-      },
-      success: res => {
-        console.log(res)
-        // this.setData({
-        //   amount: res.data.amount,
-        //   count: res.data.num
-        // })
-      },
-    })
+    for (let item of this.data.cart) {
+      wx.request({
+        url: app.globalData.APIHost,
+        method: 'GET',
+        data: {
+          action: 'cart_add',
+          guid: app.globalData.unionid,
+          good_id: item.id,
+          num: item.count,
+        },
+        success: res => {
+          console.log(res)
+        },
+      })
+    }
   }
 })
 

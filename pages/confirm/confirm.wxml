@@ -25,5 +25,5 @@
 <view class='footer-bar'>
   <text class='total-amount'>¥{{totalAmount}}</text>
   <text class='deliver-amount'>(含运费{{deliverAmount}}.00)</text>
-  <view class='button' bindtap='goPay'>立即下单</view>
+  <view class='button' bindtap='orderSubmit'>立即下单</view>
 </view>

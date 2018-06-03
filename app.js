@@ -71,13 +71,6 @@ App({
               let session_key = res.data.session_key
               this.globalData.unionid = res.data.openid
               this.globalData.openid = res.data.openid
-              wx.setStorage({
-                key: 'unionid',
-                value: res.data.openid
-              }, {
-                key: 'openid',
-                value: res.data.openid
-              })
               this.needRegister()
               // if (res.data.unionid) {
               //   this.globalData.unionid = res.unionid
@@ -97,10 +90,11 @@ App({
       }
     })
   },
+
   needRegister () {
     wx.getStorage({
       key: 'userToken',
-      success: (res) => {
+      success: () => {
         this.callLogin()
       },
       fail: () => {
@@ -120,7 +114,6 @@ App({
       },
       success: res => {
         if (res.status === 0) {
-
         } else {
           wx.setStorage({
             key: 'userToken',
@@ -147,6 +140,7 @@ App({
       }
     })
   },
+
   globalData: {
     Host: 'https://creaformation.cn/',
     APIHost: 'https://creaformation.cn/tools/submit_ajax.ashx',

@@ -136,5 +136,61 @@ Page({
       }
     }
   }
+
+  goPay() {
+    console.log('in')
+    wx.request({
+      url: app.globalData.PAYHost,
+      method: 'GET',
+      data: {
+        openid: app.globalData.unionid,
+        total_fee: 0.1,
+        out_order_no: 'B18060402275247'
+      },
+      success: (res) => {
+        console.log(res)
+        wx.requestPayment({
+          'timeStamp': res.data.timeStamp,
+          'nonceStr': res.data.nonceStr,
+          'package': res.data.package,
+          'signType': 'MD5',
+          'paySign': res.data.paySign,
+          'success': () => {
+            wx.showToast({
+              icon: 'success',
+              title: '支付成功',
+            })
+          },
+          'fail': (res) => {
+            wx.showModal({
+              title: '支付结果',
+              content: '支付失败！',
+            })
+          },
+          'complete': (res) => {
+            if (res.errMsg === 'requestPayment:ok') {
+              wx.request({
+                url: app.globalData.serverUrl + '/tools/submit_ajax.ashx?action=wx_pay_result&order_no=' + res.data.order_no,
+                success: function (res) {
+                  if (res.data.status === '1') {
+                    wx.showToast({
+                      icon: 'success',
+                      title: '支付成功',
+                    })
+                  } else {
+                    wx.showModal({
+                      title: '错误提示',
+                      content: res.data.msg,
+                    })
+                  }
+                }
+              })
+            }
+          }
+        })
+
+      }
+    })
+  }
 })
 

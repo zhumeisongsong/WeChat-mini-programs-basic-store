@@ -1,5 +1,5 @@
 import WxParse from '../../../wxParse/wxParse.js'
-import {pathJoinHost} from '../../../utils/util'
+import {pathJoinHost, ascii2native,native2ascii} from '../../../utils/util'
 const app = getApp()
 
 Page({
@@ -22,12 +22,10 @@ Page({
         id: id
       },
       success: (res) => {
-        console.log(res.data.data[0])
         this.setData({
           title: res.data.data[0].title,
         })
-        let content = decodeURI(res.data.data[0].content)
-        console.log(content)
+        let content =res.data.data[0].content
         let result = pathJoinHost(content)
         WxParse.wxParse('content', 'html', result, this)
       }

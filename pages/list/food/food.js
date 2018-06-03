@@ -2,12 +2,11 @@ const app = getApp()
 
 Page({
   data: {
-    list: [
-      {},
-      {},
-      {}],
+    host: app.globalData.Host,
+    data: [],
+    count: null,
     pageindex: 1,
-    callbackcount: 10
+    callbackcount: 20
   },
   onLoad: function () {
 
@@ -15,13 +14,13 @@ Page({
   onShow: function () {
     this.fetchData()
   },
-  toDetail(event){
+  toDetail(event) {
     let id = event.currentTarget.dataset.id
     wx.navigateTo({
       url: `../detail/detail/?id=${id}`
     })
   },
-  fetchData(){
+  fetchData() {
     wx.request({
       url: app.globalData.APIHost,
       method: 'GET',
@@ -33,6 +32,10 @@ Page({
       },
       success: (res) => {
         console.log(res)
+        this.setData({
+          data: res.data.data,
+          count: res.data.count
+        })
       }
     })
   }

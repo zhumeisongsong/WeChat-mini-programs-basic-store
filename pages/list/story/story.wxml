@@ -1,3 +1,18 @@
-<view class="flex-center">
-  <view>暂无数据</view>
+<view class="container list-view" wx-if="{{data.length>0}}">
+  <view class="item" wx:for="{{data}}" wx:key="unique" data-id="{{item.id}}" bindtap='goDetail'>
+    <image src="{{host}}{{item.img}}" mode="aspectFill" />
+    <view class='title'>
+      <text class='h1'>{{item.title}}</text>
+      <view class="text">
+        <template is="wxParse" data="{{wxParseData: content}}" />
+      </view>
+    </view>
+  </view>
 </view>
+
+<view wx-if="{{data.length===0}}" class="flex-center">暂无数据</view>
+<!-- <scroll-view scroll-y="true " bindscrolltolower="scrollLower ">
+
+    <view class="loading " hidden="{{!loading}} ">正在载入更多...</view>
+    <view class="loading complete " hidden="{{!loadingComplete}} ">已加载全部</view>
+  </scroll-view> -->

@@ -1,1 +1,36 @@
-/* pages/food/food.wxss */
+.list-view {
+  width: 100vw;
+  padding: 12px 6px 0 6px;
+  float: left;
+}
+
+.item {
+  box-sizing: border-box;
+  width: 50%;
+  padding: 0 6px;
+  float: left;
+}
+
+.item image.cover {
+  width: auto;
+  height: 120px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.item .title {
+  position: relative;
+  width: 100%;
+}
+
+.title .h1 {
+  width: 100%;
+  padding-right: 30px;
+}
+
+.title image {
+  position: absolute;
+  left: -30px;
+  top: 12px;
+  height: 20px;
+}

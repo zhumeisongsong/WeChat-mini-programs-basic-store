@@ -1,41 +1,63 @@
 <view class='container'>
-  <view class="menu">
-    <view class="item" wx:for="{{category}}" wx:key="unique" data-id="{{item.id}}" data-current="{{item.index}}" bindtap="onMenuTap">{{item.name}}</view>
+  <view class="tab-left menu ui-border-r">
+    <view class="item {{tabArr.curHdIndex==index? 'active' : ''}}" id='{{index}}' wx:for='{{category}}' wx:key='unique' data-id='{{index}}' bindtap='tab'>{{item.name}}</view>
   </view>
 
-  <view current="{{currentTab}}" duration="300" class="list">
-    <view class='tab-item' wx:for="{{category}}" wx:key="unique" data-id="{{item.id}}">
-      <view wx:for="{{tabList}}" wx:key="unique" class='list-item'>
-        <image class='good-image' wx:if="{{item.img}}" src='{{host}}{{item.img}}'></image>
-        <view class="good-text">
-          <text class="name">{{item.name}}</text>
-          <text class="des">{{item.zhaiyao}}</text>
+  <view class="tab-right list">
+    <view class="tab-item {{tabArr.curBdIndex==index? 'active' : ''}}" wx:for='{{category}}' wx:key='unique' data-id='{{index}}'>
+      <view wx:for='{{tabList}}' wx:key='unique' class='list-item ui-border-b'>
+        <image class='good-image' wx:if='{{item.img}}' src='{{host}}{{item.img}}'></image>
+        <view class='good-text'>
+          <text class='name'>{{item.name}}</text>
+          <text class='des'>{{item.zhaiyao}}</text>
 
-          <view class="action">
-            <text class="price">¥ {{item.price}}.00</text>
+          <view class='action'>
+            <text class='price'>¥ {{item.price}}.00</text>
             <view class='action-button'>
-              <text class='remove action-icon' data-id="{{item.id}}" bindtap='removeFromCart'>-</text>
-              <text class='count'>{{cart[index].number?cart[index].number:item.count}}</text>
-              <text class='add action-icon' data-id="{{item.id}}" bindtap='addToCart'>+</text>
+              <text class='remove action-icon' data-id='{{item.id}}' bindtap='removeFromCart'>-</text>
+              <text class='count'>{{item.count}}</text>
+              <text class='add action-icon' data-id='{{item.id}}' bindtap='addToCart'>+</text>
             </view>
           </view>
+
         </view>
       </view>
     </view>
   </view>
 
-  <view class='footer-bar'>
-    <view class='icon-cart'>
+  <view class='footer-bar ui-border-t'>
+    <view class='icon-cart' bindtap='showModal'>
       <image src='/images/icon-cart.png' />
-      <view class='dot' wx:if="{{count}}">{{count}}</view>
+      <view class='dot' wx:if='{{count}}'>{{count}}</view>
     </view>
     <view class='total-mount'>¥ {{amount}}.00</view>
-    <view class='button' bindtap="goConfirm">提交订单</view>
+    <view class='button' bindtap='goConfirm'>提交订单</view>
   </view>
 
-  <view>
-    <view>
-      <view></view>
+  <view class='modal' wx-if='{{modal}}'>
+
+    <view class='cart-container'>
+      <view class='cart-header ui-border-b'>
+        <text class='total-count'>
+         <text class='title'>已选商品</text>（共{{count}}件）
+        </text>
+        <text class='icon' bindtap='clearCart'>清空</text>
+        <text class='icon' bindtap='closeModal'>关闭</text>
+      </view>
+      <view class='cart-list'>
+
+        <view class='cart-item' wx:for='{{cart}}'>
+          <text class='name'>冷吃系列|商品名</text>
+          <text class='price'>¥ {{item.price}}.00</text>
+          <view class='action-button'>
+            <text class='remove action-icon' data-id='{{item.id}}' bindtap='removeFromCart'>-</text>
+            <text class='count'>r{{item.count}}</text>
+            <text class='add action-icon' data-id='{{item.id}}' bindtap='addToCart'>+</text>
+          </view>
+        </view>
+
+      </view>
     </view>
+
   </view>
 </view>

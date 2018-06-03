@@ -22,7 +22,9 @@
   <view class="notice-container">
     <image src="{{iconNotice}}" mode="aspectFill" />
     <view class="text">
-      <template is="wxParse" data="{{wxParseData:notice.nodes}}" />
+      <view class='animate'>
+        <template is="wxParse" data="{{wxParseData:notice.nodes}}" />
+      </view>
     </view>
   </view>
 

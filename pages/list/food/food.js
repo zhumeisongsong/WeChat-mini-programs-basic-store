@@ -14,10 +14,10 @@ Page({
   onShow: function () {
     this.fetchData()
   },
-  toDetail(event) {
+  goDetail(event) {
     let id = event.currentTarget.dataset.id
     wx.navigateTo({
-      url: `../detail/detail/?id=${id}`
+      url: `../../detail/secondDetail/secondDetail?id=${id}`
     })
   },
   fetchData() {

@@ -22,6 +22,7 @@ Page({
         id: id
       },
       success: (res) => {
+        console.log(res)
         this.setData({
           title: res.data.data[0].title
         })

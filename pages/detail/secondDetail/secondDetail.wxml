@@ -1,2 +1,8 @@
-<!--pages/detail/secondDetail/secondDetail.wxml-->
-<text>pages/detail/secondDetail/secondDetail.wxml</text>
+<import src="../../wxParse/wxParse.wxml" />
+
+<view>
+   <text class="title">{{title}}</text>
+   <view class="content">
+         <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+       </view>
+</view>

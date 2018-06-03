@@ -1,66 +1,44 @@
-// pages/detail/secondDetail/secondDetail.js
+import WxParse from '../../../wxParse/wxParse.js'
+const app = getApp()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    title: '',
+    Host: app.globalData.Host
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad: function (e) {
+    this.fetchData(e.id)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+  fetchData(id){
+    wx.request({
+      url: app.globalData.APIHost,
+      method: 'GET',
+      data: {
+        action: 'article_info',
+        id: id
+      },
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          title: res.data.data[0].title
+        })
+        let content = decodeURIComponent(res.data.data[0].content)
+        console.log(content)
+        WxParse.wxParse('content', 'html', content, this)
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+      }
+    })
   }
 })
+
+setStrMarke=function(str,subStr,indexs) {
+  var string = str
+  for (var i = 0; i < indexs.length; i++) {
+    var s = app.globalData.Host
+    string = string.substring(0, indexs[i]) + s + string.substring(indexs[i] + subStr.length, string.length);
+  }
+  return string;
+}

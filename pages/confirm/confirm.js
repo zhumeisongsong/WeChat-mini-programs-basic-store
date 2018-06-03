@@ -21,9 +21,8 @@ Page({
         guid: app.globalData.unionid
       },
       success: res => {
-        console.log(res)
         this.setData({
-          cart: res.data,
+          cart: res.data.data,
           totalAmount: res.data.amount
         })
       }
@@ -73,7 +72,6 @@ Page({
         express_fee: 6
       },
       success: res => {
-        console.log(res)
         this.payConfirm(res)
       },
       fail: err => {
@@ -85,7 +83,6 @@ Page({
   selectAddress(){
     wx.chooseAddress({
       success: (res) => {
-        console.log(res)
         this.setData({
           address: res
         })
@@ -140,6 +137,7 @@ Page({
   },
 
   payConfirm(res){
+    let data = res
     wx.showModal({
       title: '订单结果',
       content: res.data.msg,
@@ -147,7 +145,7 @@ Page({
       cancelText: '稍后支付',
       success: (res) => {
         if (res.confirm) {
-          this.goPay(res)
+          this.goPay(data)
         } else {
           wx.redirectTo({
             url: '../list/order/order'
@@ -159,7 +157,6 @@ Page({
   },
 
   goPay(res) {
-    console.log(res)
     wx.request({
       url: app.globalData.PAYHost,
       method: 'GET',
@@ -186,6 +183,9 @@ Page({
               title: '支付结果',
               content: '支付失败！',
             })
+            // wx.redirectTo({
+            //   url: '../list/order/order'
+            // })
           },
           'complete': (res) => {
             if (res.errMsg === 'requestPayment:ok') {

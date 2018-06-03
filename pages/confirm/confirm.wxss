@@ -1,5 +1,6 @@
 .container {
   padding-bottom: 45px;
+  background: #f2f2f2;
 }
 
 .list-count {
@@ -41,4 +42,19 @@ textarea {
 
 .icon-right {
   flex-shrink: 0;
+}
+
+.text-list{
+  background:#fff;
+  }
+
+.good-list{
+  padding: 12px;
+   background:#fff;
+}
+
+.good-list .list-title{
+  display:block;
+  padding-bottom:12px;
+  color:#ccc;
 }

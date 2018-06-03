@@ -14,9 +14,9 @@
           <view class='action'>
             <text class='price'>¥ {{item.price}}.00</text>
             <view class='action-button'>
-              <text class='remove action-icon' data-item='{{item}}' bindtap='removeFromCart'>-</text>
+              <text class='remove action-icon' data-item='{{item}}' data-index='{{index}}' bindtap='removeFromCart'>-</text>
               <text class='count'>{{item.count}}</text>
-              <text class='add action-icon' data-item='{{item}}' bindtap='addToCart'>+</text>
+              <text class='add action-icon' data-item='{{item}}' data-index='{{index}}'  bindtap='addToCart'>+</text>
             </view>
           </view>
 

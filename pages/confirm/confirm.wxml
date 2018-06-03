@@ -8,18 +8,16 @@
 
   <view class="grey"></view>
 
-  <view class="text-list">
+  <view class="good-list">
     <view>
       <text class="list-title">商品详情</text>
     </view>
-    <view class="list-item">
-      <text class="list-title">cccc{{item.name}}</text>
-      <text class="list-count">X{{item.count}}.00</text>
-      <text class="list-amount">¥{{item.amount}}.00</text>
+    <view class='good-item ui-border-t' wx:for='{{cart}}' wx:key='unique'>
+      <text>{{item.name}}</text>
+      <text class="num">x{{item.number}}.00</text>
+      <text class="price">¥{{item.price*item.number}}.00</text>
     </view>
   </view>
-
-  <view class="grey"></view>
 </view>
 
 <view class='footer-bar'>

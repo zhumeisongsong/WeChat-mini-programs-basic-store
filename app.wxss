@@ -86,15 +86,6 @@ scroll-view {
   font-size: 14px;
 }
 
-.text-list view {
-  position: relative;
-  display: flex;
-  height: 44px;
-  line-height: 44px;
-  margin-left: 12px;
-  padding-right: 12px;
-}
-
 .auto-height {
   height: auto;
 }
@@ -154,6 +145,24 @@ scroll-view {
   width: 6px;
   height: 10px;
   margin: 18px;
+}
+
+.good-item {
+  display: flex;
+  align-items: center;
+  height: 28px;
+}
+
+.good-item .num {
+  flex-grow: 1;
+  text-align: right;
+  padding-right:30px;
+}
+
+.good-item .price{
+  flex-shrink: 0;
+  width: 50px;
+  text-align: right
 }
 
 /**

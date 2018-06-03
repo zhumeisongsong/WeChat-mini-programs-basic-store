@@ -1,0 +1,43 @@
+.list-view {
+  background: #f2f2f2;
+}
+
+.item {
+  margin: 12px 12px 0 12px;
+  padding: 12px;
+  background-color: #fff;
+}
+
+.order-header {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status {
+  color: #fa506a;
+}
+
+.order-footer {
+  padding-top: 6px;
+}
+
+.order-footer view {
+  padding-top: 6px;
+  color: #999;
+}
+
+.good-list{
+  padding-top: 6px;
+}
+
+.good-item {
+  display: flex;
+  height: 28px;
+}
+
+.good-item .num {
+  flex-grow: 1;
+  text-align: center;
+}

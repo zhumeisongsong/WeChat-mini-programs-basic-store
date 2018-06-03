@@ -1,18 +1,28 @@
-<view class="container list-view" wx-if="{{data.length>0}}">
-  <view class="item" wx:for="{{data}}" wx:key="unique" data-id="{{item.id}}" bindtap='goDetail'>
-    <image src="{{host}}{{item.img}}" mode="aspectFill" />
-    <view class='title'>
-      <text class='h1'>{{item.title}}</text>
-      <view class="text">
-        <template is="wxParse" data="{{wxParseData: content}}" />
+<view scroll-y="true" wx-if="{{data.length>0}}" class='container list-view' bindscrolltolower="scrollLower">
+  <view class="item ui-border-radius" wx:for="{{data}}" wx:key="unique" data-id='{{item.id}}' bindtap='goPay'>
+    <view class='order-header ui-border-b'>
+      <view>订单号:{{item.order_no}}</view>
+      <view class='status'>订单状态:{{item.payment_status?'已支付':'未支付'}}</view>
+    </view>
+
+    <view class='good-list'>
+      <view wx:for="{{item.goods}}" wx:key='unique' class='good-item'>
+        <view>{{item.title}}</view>
+        <view class='num'>x{{item.num}}</view>
+        <view>¥ {{item.price}}.00</view>
       </view>
     </view>
-  </view>
-</view>
-<!-- <scroll-view scroll-y="true " bindscrolltolower="scrollLower ">
 
-    <view class="loading " hidden="{{!loading}} ">正在载入更多...</view>
-    <view class="loading complete " hidden="{{!loadingComplete}} ">已加载全部</view>
-  </scroll-view> -->
+    <view class='order-footer ui-border-t'>
+      <view>收货人:{{accept_name}} </view>
+      <view>联系方式:{{address}} </view>
+      <view>收货地址: {{item.mobile}}</view>
+    </view>
+  </view>
+  <!-- <view class="loading" hidden="{{!loading}}">正在载入更多...</view>
+  <view class="loading complete" hidden="{{!loadingComplete}}">已加载全部</view> -->
+</view>
 
 <view wx-if="{{data.length===0}}" class="flex-center">暂无数据</view>
+
+<!-- amount : 76 express_no : "" express_status : 1 status : 1 -->

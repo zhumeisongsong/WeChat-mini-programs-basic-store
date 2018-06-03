@@ -22,13 +22,13 @@ Page({
         id: id
       },
       success: (res) => {
-        console.log(res.data)
+        console.log(res.data.data[0])
         this.setData({
-          title: res.data.data[0].title
+          title: res.data.data[0].title,
         })
         let content = decodeURIComponent(res.data.data[0].content)
-        console.log(content)
-        WxParse.wxParse('content', 'html', content, this)
+        let result = pathJoinHost(content)
+        WxParse.wxParse('content', 'html', result, this)
       }
     })
   }

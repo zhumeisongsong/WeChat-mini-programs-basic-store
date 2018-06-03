@@ -17,7 +17,7 @@ Page({
   goDetail(event) {
     let id = event.currentTarget.dataset.id
     wx.navigateTo({
-      url: `../../detail/secondDetail/secondDetail?id=${id}`
+      url: `../../detail/detail?id=${id}`
     })
   },
   fetchData() {

@@ -1,12 +1,15 @@
+.container{
+  margin: 0 12px;
+}
+
 .title {
   display: block;
-  text-align: center;
   font-size: 16px;
   padding: 6px 12px;
 }
 
 .content {
-  padding: 0 12px;
+  padding-top: 12px;
   text-align: center
 }
 

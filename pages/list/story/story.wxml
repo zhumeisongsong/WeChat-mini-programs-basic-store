@@ -3,8 +3,8 @@
     <image src="{{host}}{{item.img}}" mode="aspectFill" />
     <view class='title'>
       <text class='h1'>{{item.title}}</text>
-      <view class="text">
-        <template is="wxParse" data="{{wxParseData: content}}" />
+      <view class=p">
+        {{item.zhaiyao}}
       </view>
     </view>
   </view>

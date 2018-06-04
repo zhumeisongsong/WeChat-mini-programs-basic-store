@@ -22,10 +22,12 @@ Page({
         id: id
       },
       success: (res) => {
+        console.log(res)
         this.setData({
           title: res.data.data[0].title,
+          zhaiyao:res.data.data[0].zaiyao,
         })
-        let content =res.data.data[0].content
+        let content = res.data.data[0].content
         let result = pathJoinHost(content)
         WxParse.wxParse('content', 'html', result, this)
       }

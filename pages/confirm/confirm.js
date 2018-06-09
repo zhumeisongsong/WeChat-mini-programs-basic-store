@@ -12,6 +12,10 @@ Page({
     this.getCarts()
   },
 
+  onUnload: function () {
+   this.clearCart()
+  },
+
   getCarts () {
     wx.request({
       url: app.globalData.APIHost,
@@ -30,6 +34,7 @@ Page({
   },
 
   clearCart(){
+    console.log(this.data.cart)
     for (let item of this.data.cart) {
       wx.request({
         url: app.globalData.APIHost,

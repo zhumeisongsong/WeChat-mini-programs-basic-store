@@ -10,10 +10,10 @@ App({
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
-          wx.showToast({
-            icon: 'success',
-            title: '已经授权',
-          })
+          // wx.showToast({
+          //   icon: 'success',
+          //   title: '已经授权',
+          // })
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: userData => {
@@ -72,10 +72,10 @@ App({
               this.globalData.unionid = res.data.openid
               this.globalData.openid = res.data.openid
 
-              wx.showToast({
-                icon: 'success',
-                title: '已取到openid',
-              })
+              // wx.showToast({
+              //   icon: 'success',
+              //   title: '已取到openid',
+              // })
               this.needRegister()
               // if (res.data.unionid) {
               //   this.globalData.unionid = res.unionid
@@ -99,18 +99,18 @@ App({
     wx.getStorage({
       key: 'userToken',
       success: (res) => {
-        wx.showToast({
-          icon: 'success',
-          title: '需要登录',
-        })
+        // wx.showToast({
+        //   icon: 'success',
+        //   title: '需要登录',
+        // })
         console.log(res)
         this.callLogin()
       },
       fail: () => {
-        wx.showToast({
-          icon: 'success',
-          title: '需要注册',
-        })
+        // wx.showToast({
+        //   icon: 'success',
+        //   title: '需要注册',
+        // })
         this.callRegister()
       }
     })
@@ -148,10 +148,10 @@ App({
       },
       success: (res) => {
         console.log(res)
-        wx.showToast({
-          icon: 'success',
-          title: '登录成功',
-        })
+        // wx.showToast({
+        //   icon: 'success',
+        //   title: '登录成功',
+        // })
         wx.setStorage({
           key: 'indexInfo',
           data: res.data.data[0]

@@ -27,7 +27,6 @@ Page({
         action: 'goodstype_list'
       },
       success: res => {
-        console.log(res)
         this.setData({
           category: res.data.data
         })
@@ -57,7 +56,6 @@ Page({
   tab(event) {
     let id = event.currentTarget.id;
     let obj = {};
-    console.log(id)
     obj.curHdIndex = id;
     obj.curBdIndex = id;
     this.setData({
@@ -81,7 +79,6 @@ Page({
         if (obj[i].id === item.id) {
           obj[i].price = obj[i].price + this.data.tabList[index].price
           obj[i].count = obj[i].count + 1
-          console.log(obj[i])
           isNew = false
         }
       }
@@ -92,7 +89,6 @@ Page({
     }
 
     this.data.tabList[index].count = this.data.tabList[index].count + 1
-    console.log(this.data.tabList[index].count)
 
     this.setData({
       cart: obj,
@@ -108,21 +104,31 @@ Page({
     let index = findIndex(this.data.tabList, item)
 
     if (obj.length > 0) {
+      // cart obj compute
       for (let i of obj) {
         if (i.id === item.id && i.count > 0) {
           i.price = i.price - this.data.tabList[index].price
           i.count = i.count - 1
         }
       }
-      if (item.count > 0)
+      // cart obj setting
+      if (item.count > 0) {
+        if (item.count === 1) {
+          let cartIndex = findIndex(this.data.cart, item)
+          console.log(cartIndex)
+          obj.splice(cartIndex, 1)
+          console.log(obj)
+        }
         this.setData({
           cart: obj,
           count: this.data.count - 1,
           amount: this.data.amount - this.data.tabList[index].price
         })
+      }
     }
 
-    if (this.data.tabList[index].count) {
+
+    if (this.data.tabList[index].count > 0) {
       this.data.tabList[index].count -= 1
       this.setData({
         tabList: this.data.tabList
@@ -156,7 +162,6 @@ Page({
   goConfirm() {
     if (this.data.count > 0) {
       this.submitCart()
-      this.clearCart()
       wx.navigateTo({
         url: '../confirm/confirm'
       })

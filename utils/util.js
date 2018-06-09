@@ -28,9 +28,8 @@ export const pathJoinHost = (string) => {
 }
 
 export const findIndex = (l, o) => {
-  let objStr = JSON.stringify(o)
   return l.reduce((index, ele, i) => {
-    if (JSON.stringify(ele) === objStr) {
+    if (ele.id === o.id) {
       return i
     } else {
       return index

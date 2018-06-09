@@ -10,7 +10,10 @@ App({
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
-          console.log('eeee')
+          wx.showToast({
+            icon: 'success',
+            title: '已经授权',
+          })
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: userData => {
@@ -25,7 +28,6 @@ App({
       }
     })
   },
-
   getUnionid(){
     wx.getUserInfo({
       success: userData => {
@@ -53,7 +55,6 @@ App({
       }
     })
   },
-
   login(){
     // 获取登陆信息 获取openId 获取用户信息 注册登录
     wx.login({
@@ -67,10 +68,14 @@ App({
               code: res.code
             },
             success: res => {
-              console.log(res)
               let session_key = res.data.session_key
               this.globalData.unionid = res.data.openid
               this.globalData.openid = res.data.openid
+
+              wx.showToast({
+                icon: 'success',
+                title: '已取到openid',
+              })
               this.needRegister()
               // if (res.data.unionid) {
               //   this.globalData.unionid = res.unionid
@@ -90,14 +95,22 @@ App({
       }
     })
   },
-
   needRegister () {
     wx.getStorage({
       key: 'userToken',
-      success: () => {
+      success: (res) => {
+        wx.showToast({
+          icon: 'success',
+          title: '需要登录',
+        })
+        console.log(res)
         this.callLogin()
       },
       fail: () => {
+        wx.showToast({
+          icon: 'success',
+          title: '需要注册',
+        })
         this.callRegister()
       }
     })
@@ -113,6 +126,7 @@ App({
         avatar: this.globalData.userInfo.avatarUrl,
       },
       success: res => {
+        console.log(res)
         if (res.status === 0) {
         } else {
           wx.setStorage({
@@ -133,6 +147,11 @@ App({
         guid: this.globalData.unionid
       },
       success: (res) => {
+        console.log(res)
+        wx.showToast({
+          icon: 'success',
+          title: '登录成功',
+        })
         wx.setStorage({
           key: 'indexInfo',
           data: res.data.data[0]
@@ -140,7 +159,6 @@ App({
       }
     })
   },
-
   globalData: {
     Host: 'https://creaformation.cn/',
     APIHost: 'https://creaformation.cn/tools/submit_ajax.ashx',
@@ -149,6 +167,6 @@ App({
     unionid: null,
     openid: null,
     hasAuthButton: false,
-    canIUse: false
+    canIUse: true
   }
 })
